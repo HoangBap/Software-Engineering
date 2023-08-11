@@ -1,5 +1,7 @@
 import mysql from 'mysql2'
 import dotenv from 'dotenv'
+import bcrypt from 'bcrypt'
+
 dotenv.config()
 
 const pool = mysql.createPool({
@@ -27,6 +29,26 @@ export async function getUser(email) {
         return null
 
     return rows[0]
+}
+// Check if the email and password match the data in the database
+export async function authenticateUser(email, user_password) {
+    const [rows] = await pool.query(`
+    SELECT *
+    FROM users
+    WHERE email = ?
+    `, [email])
+
+    if (rows.length === 0) {
+        return null; // doesnt exist
+    }
+
+    const user = rows[0];
+    const check = bcrypt.compare(user.user_password,user_password )
+    if (!check){
+        return null
+    }
+
+    return 1; // 
 }
 
 //Tao them mot user vao database

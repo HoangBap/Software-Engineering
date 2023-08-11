@@ -6,12 +6,13 @@ const router = express.Router()
 
 router 
     .route('/login')
-    .get(controller.loginView)    
+    .get(controller.loginView)  
+    .post(controller.login)  
     
 router
-    .route('/register')
-    .get(controller.registerView)
-    .post(controller.register)
+     .route('/register')
+     .get(controller.registerView)
+     .post(controller.register)
 
 export default router;
 

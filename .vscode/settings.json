@@ -10,7 +10,7 @@
             "port": 3306,
             "driver": "MySQL",
             "name": "Database",
-            "database": "accounts",
+            "database": "account_management",
             "username": "huyhoang",
             "password": "12345"
         }

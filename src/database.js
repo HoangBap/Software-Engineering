@@ -9,26 +9,32 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE
 }).promise()
 
+//Lay het cac data 
 export async function getAllData() {
-    const [rows] = await pool.query("SELECT * FROM info")
+    const [rows] = await pool.query("SELECT * FROM users")
     return rows
 }
 
-export async function getUser(username) {
+//Tim user voi email
+export async function getUser(email) {
     const [rows] = await pool.query(`
     SELECT *
-    FROM info
-    WHERE username = ?
-    `, [username])
+    FROM users
+    WHERE email = ?
+    `, [email])
+
+    if(rows[0] == null)
+        return null
+
     return rows[0]
 }
 
-export async function createUser(username, password, email, phone_number = null) {
+//Tao them mot user vao database
+export async function createUser(email, user_password) {
     const [result] = await pool.query(`
-    INSERT INTO info(username, password, email, phone_number)
-    VALUES (?, ?, ?, ?)`
-    , [username, password, email, phone_number])
+    INSERT INTO users(email, user_password)
+    VALUES (?, ?)`
+    , [email, user_password])
 
     return result.insertId
 }
-

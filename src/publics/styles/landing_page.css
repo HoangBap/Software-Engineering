@@ -48,3 +48,11 @@ body {
     border-radius: 20px;
     font-weight: 600;
 }
+
+#pic_1{
+    background-image: url('../picture/doctor.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100vh;
+
+}

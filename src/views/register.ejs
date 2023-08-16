@@ -1,5 +1,5 @@
 <%- include('layout.ejs'); %>
-    <link rel="stylesheet" href="styles/register.css">
+    <link rel="stylesheet" href="../publics/styles/sign_up.css">
 </head>
 <body class="bg-image">
     <div>
@@ -14,7 +14,7 @@
             </div>
         </div> -->
         <div id="login">
-            <form method="post" action="/something">
+            <form>
                 <div class="row px-4">
                     <div style= "font-size:22px" class="text mt-4 mb-4">
                         <b>Sign up to your Account</b>
@@ -23,13 +23,17 @@
                 
                 <!-- <label class="sr-only">Input your email</label> -->
                 <div class="row mx-4">
-                    <input type="email" id="emailAddress" class="form-control mt-3 mb-1" placeholder="Input your email" required autofocus>
-                    <input type="password" id="password" class="form-control mt-3 mb-1" placeholder="Input your password" required>
-                    <input type="password" id="password" class="form-control mt-3 mb-3" placeholder="Re-Input your password" required autofocus>
+                    <input type="email" id="emailAddress" class="form-control mt-3 mb-1" placeholder="Input your email" name="email" required autofocus>
+                    <input type="password" id="password" class="form-control mt-3 mb-3" placeholder="Input your password" name="password1" required autofocus>
+                    <input type="password" id="password" class="form-control mt-3 mb-3" placeholder="Input your password" name="password2" required autofocus>
                 </div>
-
+                <!-- <div class="row">
+                    <p>
+                        <a class="link-opacity-100 link-dark mx-4" href ="./login.html">Forgot Password?</a>
+                    </p>
+                </div> -->
                 <div class="text-center row mx-4">
-                    <button class="btn btn-dark btn-block" formaction="./login"> CONTINUE</button>
+                    <button class="btn btn-dark btn-block" type="submit" formaction="./login"> CONTINUE</button>
                 </div>
                 <div class="row mt-5"></div>
                 <div class="row mt-5"></div>

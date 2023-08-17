@@ -5,6 +5,8 @@ router
     .route('/homepage')
     .get((req, res) => {
         console.log("Accessing the homepage!")
+        const userID = req.cookies.userID
+        console.log('User ', userID)
         res.render("homepage")
     })
 

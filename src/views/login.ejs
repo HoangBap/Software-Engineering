@@ -1,11 +1,12 @@
 <%- include('layout.ejs'); %>
-    <link rel="stylesheet" href="../publics/styles/login.css">
+    <link rel="stylesheet" href="styles/login.css">
 </head>
-<body>
+<body class="body">
     <div>
         <div class="text-center mt-5 mb-4 text-dark fs-3">
             <b>FitUS</b>
         </div>
+        
         <div id="login">
             <form>
                 <div class="row px-4">
@@ -17,10 +18,9 @@
                     </div>
                 </div>
                 
-                <!-- <label class="sr-only">Input your email</label> -->
                 <div class="row mx-4">
-                    <input type="email" id="emailAddress" class="form-control mt-3 mb-1" placeholder="Input your email" required autofocus>
-                    <input type="password" id="password" class="form-control mt-3 mb-3" placeholder="Input your password" required autofocus>
+                    <input type="email" id="emailAddress" class="form-control mt-3 mb-1" placeholder="Input your email" name="email" required autofocus>
+                    <input type="password" id="password" class="form-control mt-3 mb-3" placeholder="Input your password" name="password" required autofocus>
                 </div>
                 
                 <div class="checkbox row">
@@ -31,18 +31,18 @@
                 </div>
                 <div class="row">
                     <p>
-                        <a class="link-opacity-100 link-dark mx-4" href ="./forgot_pass.ejs" style="font-size: small;">Forgot Password?</a>
+                        <a class="link-opacity-100 link-dark mx-4" href ="./forgot_pass" style="font-size: small;">Forgot Password?</a>
                     </p>
                 </div>
                 <div class="text-center row mx-4">
-                    <button class="btn btn-dark btn-block" formaction="#"> CONTINUE</button>
+                    <button class="btn btn-dark btn-block" type="submit" formaction="#"> CONTINUE</button>
                 </div>
                 <div class="row mt-5"></div>
                 
-                <!-- <div class="row mt-5"></div> -->
+            
                 <div class="text-center mt-5 row">
                     <p>
-                        New user? <a class="link-opacity-100 link-dark" href ="../sign_up_page/sign_up.html">SIGN UP HERE</a>
+                        New user? <a class="link-opacity-100 link-dark" href ="./register">SIGN UP HERE</a>
                     </p>
                 </div>
                 

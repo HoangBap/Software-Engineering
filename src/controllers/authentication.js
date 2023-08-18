@@ -1,4 +1,5 @@
 import {getUser, createUser} from '../models/user.js'
+import { checkingUser } from '../middleware/checkUser.js'
 import bcrypt from 'bcrypt'
 const controller = {}
 
@@ -26,14 +27,18 @@ controller.login = async (req, res) => {
     const isMatch = await bcrypt.compare(user_password, cur_user.user_password)
     if (isMatch) { // Successfully
         console.log(`Welcome back, ${email}!`);
-        res.cookie('userID', cur_user.ID, '/homepage')
+        res.cookie(`userID`, cur_user.ID, {
+            secure: true,
+            maxAge: 360000,
+            httpOnly: true
+        })
+
         res.redirect("homepage")
         return
         
     } else { //Failed
         console.log('Incorrect password');
-        res.render("login", { email: req.body.email, user_password: req.body.user_password || null });
-        return
+        res.render("login", { email: req.body.email });
     }
 }
 
@@ -65,9 +70,14 @@ controller.register = async (req, res, next) => {
             console.log(`Welcome new user ${email} to the website!`)
 
             const hashed_pass = await bcrypt.hash(user_password, 10)
-            const userID = createUser(email, hashed_pass, email) //Add the user to the database
+            const userID = createUser(email, hashed_pass) //Add the user to the database
 
-            res.cookie('userID', userID, '/homepage')
+            res.cookie(`userID`, cur_user.ID, {
+                secure: true,
+                maxAge: 360000,
+                httpOnly: true
+            })
+            
             res.redirect("homepage")
             return 
         }
@@ -76,14 +86,23 @@ controller.register = async (req, res, next) => {
 
 //For Register Page
 controller.registerView = (req, res) => {
-    res.render("register", {
-    });
+    if (checkingUser(req, res)) {
+        return 
+    }
+
+    res.render("register")
+    return
 }
 
 // For Login View 
 controller.loginView = (req, res) => {
-    res.render("login", {
-    });
+    //User has already accessed the website once
+    if (checkingUser(req, res)) {
+        return 
+    }
+    
+    res.render("login")
+    return
 }
 
 export default controller

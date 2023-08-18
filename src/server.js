@@ -3,6 +3,7 @@ import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import cookieParser from 'cookie-parser'
+import session from 'express-session'
 
 //Import local files
 import userRouter from './routes/authentication.js'

@@ -8,6 +8,7 @@ import session from 'express-session'
 //Import local files
 import userRouter from './routes/authentication.js'
 import homepageRouter from './routes/homepage.js'
+import userHealthRecordRouter from './routes/userHealthRecord.js';
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(express.urlencoded({extended: true}))
 //Setting up routes
 app.use(homepageRouter)
 app.use(userRouter);
+app.use(userHealthRecordRouter);
 
 //Creating port
 const PORT = process.env.PORT || 4111;

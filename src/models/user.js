@@ -16,7 +16,7 @@ export async function getUser(email) {
 
     if(rows[0] == null)
         return null
-
+    
     return rows[0]
 }
 

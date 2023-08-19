@@ -3,21 +3,21 @@ import { getUser } from '../models/user.js';
 
 const healthRecordController = {};
 
-// Xem bản ghi sức khỏe
+// Xem health rec
 healthRecordController.viewHealthRecord = async (req, res) => {
-    const { userID } = req.cookies;
+    const { cur_user } = req.cookies;
 
-    if (!userID) {
+    if (!cur_user) {
         console.log("User not logged in!");
         return res.redirect("/login");
     }
 
-    const healthRecords = await getUserHealthRecord(userID);
+    const healthRecords = await getUserHealthRecord(cur_user.user_ID);
 
     res.render("healthRecords", { healthRecords });
 };
 
-// Chỉnh sửa bản ghi sức khỏe
+// edit
 healthRecordController.editHealthRecord = async (req, res) => {
     const { record_ID, user_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure, submit_date } = req.body;
 
@@ -25,7 +25,7 @@ healthRecordController.editHealthRecord = async (req, res) => {
     const cur_user = await getUser(user_ID);
     if (!cur_user) {
         console.log(`User with ID ${user_ID} not found!`);
-        return res.redirect('/profile'); // Chuyển hướng người dùng đến trang hồ sơ
+        return res.redirect('/homepage'); // Chuyển hướng về lại homepage
     }
 
     // Cập nhật bản ghi sức khỏe
@@ -39,11 +39,11 @@ healthRecordController.editHealthRecord = async (req, res) => {
     res.redirect('/profile'); // Chuyển hướng người dùng đến trang hồ sơ
 };
 
-// Xóa bản ghi sức khỏe
+// Delete
 healthRecordController.deleteHealthRecord = async (req, res) => {
     const { record_ID } = req.body;
 
-    // Xóa bản ghi sức khỏe
+    // delete ko trả về gì hết
     await deleteUserHealthRecord(record_ID);
 
     console.log(`Deleted health record with ID ${record_ID}`);

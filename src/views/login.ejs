@@ -8,7 +8,7 @@
         </div>
         
         <div id="login">
-            <form>
+            <form method="post" action="/login">
                 <div class="row px-4">
                     <div style= "font-size:15px" class="text mt-4 mb-2">
                         WELCOME BACK
@@ -19,8 +19,8 @@
                 </div>
                 
                 <div class="row mx-4">
-                    <input type="email" id="emailAddress" class="form-control mt-3 mb-1" placeholder="Input your email" name="email" required autofocus>
-                    <input type="password" id="password" class="form-control mt-3 mb-3" placeholder="Input your password" name="password" required autofocus>
+                    <input type="email" id="email" class="form-control mt-3 mb-1" placeholder="Input your email" name="email" value="<%= locals.email || null %>" required autofocus>
+                    <input type="password" id="password" class="form-control mt-3 mb-3" placeholder="Input your password" name="user_password" required autofocus>
                 </div>
                 
                 <!-- <div class="checkbox row">

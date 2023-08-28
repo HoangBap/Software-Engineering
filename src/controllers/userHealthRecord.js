@@ -3,6 +3,32 @@ import { getUser } from '../models/user.js';
 
 const healthRecordController = {};
 
+
+healthRecordController.createUserHealthRecord = async (req, res) => {
+    const { record_ID, user_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure, submit_date } = req.body;
+
+    // Kiểm tra xem user có tồn tại k
+    const cur_user = await getUserByEmail(email); 
+    if (!cur_user) {
+        console.log(`User with email ${email} not found!`);
+        res.json({ flag: 2 }); // Trả về fail vì user không tồn tại / lỗi hệ thống 
+    }
+
+
+    // Kiểm tra xem user đã có health record cho ngày đó chưa
+    if (cur_user.user_ID == user_ID && cur_user.submit_date == submit_date){
+        console.log(`Health record for user ${cur_user.email} on ${submit_date} already exists!`);
+        res.json({ flag: 3 }); // Trả về flag exist
+        return;
+    }
+
+    // Nếu không có health record cho ngày đó, tạo mới
+
+    await createUserHealthRecord(record_ID, user_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure, submit_date);
+    console.log(`Created health record with ID ${record_ID} for user ${cur_user.email} on ${submit_date}`);
+    res.json({ flag: 1 }); // successfully nhó
+};
+
 // Xem health rec
 healthRecordController.viewHealthRecord = async (req, res) => {
     const { cur_user } = req.cookies;

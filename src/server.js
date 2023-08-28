@@ -8,6 +8,7 @@ import session from 'express-session'
 //Import local files
 import userRouter from './routes/authentication.js'
 import homepageRouter from './routes/homepage.js'
+import profileRouter from './routes/profileModification.js'
 
 const app = express();
 
@@ -26,8 +27,9 @@ app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 
 //Setting up routes
+app.use(userRouter)
 app.use(homepageRouter)
-app.use(userRouter);
+app.use(profileRouter)
 
 //Creating port
 const PORT = process.env.PORT || 4111;

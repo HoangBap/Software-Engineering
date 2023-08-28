@@ -58,8 +58,13 @@ body {
 } */
 
 #profile_form{
-    border-style: dotted;
     margin-left: 200px;
     margin-right: 200px;
-    /* background-color: #DCE4EF; */
+    background-color: #DCE4EF;
+}
+
+header{
+    position: fixed;
+    top:0;
+    width: 100%;
 }

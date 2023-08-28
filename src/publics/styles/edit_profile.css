@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #EEF6F9;
+}
+
+/*===== NAVBAR =====*/
+
+.navbar-wrap{
+    background-color: #4D77FF;
+}
+
+.navbar-brand{
+    font-size: 2rem;
+    font-weight: 800;
+    color: #FFFFFF;
+}
+
+.navbar-brand:hover{
+    color:#052B40;
+}
+
+.nav-item-space{
+    margin: 0 10px;
+}
+
+.nav-link{
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.nav-link:hover{
+    color:#052B40;
+}
+
+.log-in-btn{
+    margin-left: 50px;
+    padding: 5px 20px;
+    border: 0;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* #pic_1{
+    background-image: url('../picture/doctor.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100vh;
+
+} */
+
+#profile_form{
+    margin-left: 200px;
+    margin-right: 200px;
+    background-color: #DCE4EF;
+}
+
+header{
+    position: fixed;
+    top:0;
+    width: 100%;
+}

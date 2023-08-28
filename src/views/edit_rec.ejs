@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Health Record</title>
+  
+  <!-- Bootstrap CSS Library -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="border-4">
+
+    <form id="editHealthRecordForm">
+      <div class="mb-3">
+        <label for="recordID" class="form-label">Record ID</label>
+        <input type="text" class="form-control" id="recordID" name="recordID" required>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="fetchHealthRecord()">Fetch Record</button>
+      
+      <div id="healthRecordFields" style="display: none;">
+        <!-- Displayed fields for editing -->
+      </div>
+      
+      <button type="submit" class="btn btn-success" id="updateButton" style="display: none;">Update Information</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function fetchHealthRecord() {
+    const recordID = document.getElementById("recordID").value;
+    
+    // You can use AJAX or fetch to retrieve the health record details from the server.
+    // Replace this section with actual API call or database retrieval.
+    const mockHealthRecord = {
+      userID: "12345",
+      height: 175,
+      weight: 70,
+      bloodSugar: 90,
+      heartRate: 75,
+      systolicPressure: 120,
+      diastolicPressure: 80,
+      submitDate: "2023-08-19"
+    };
+    
+    // Populate the form fields with retrieved data
+    document.getElementById("healthRecordFields").innerHTML = `
+      <div class="mb-3">
+        <label for="userID" class="form-label">User ID</label>
+        <input type="text" class="form-control" id="userID" name="userID" value="${mockHealthRecord.userID}" required>
+      </div>
+      <div class="mb-3">
+        <label for="height" class="form-label">Height</label>
+        <input type="number" step="0.01" class="form-control" id="height" name="height" value="${mockHealthRecord.height}" required>
+      </div>
+      <!-- Include other fields here with appropriate values -->
+    `;
+    
+    // Display the update button
+    document.getElementById("updateButton").style.display = "block";
+    
+    // Show the health record fields
+    document.getElementById("healthRecordFields").style.display = "block";
+  }
+</script>
+</body>
+</html>

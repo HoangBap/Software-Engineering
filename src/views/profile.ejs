@@ -1,7 +1,8 @@
 <%- include('layout.ejs'); %>
-<link rel="stylesheet" href="styles/profile.css">
+<link rel="stylesheet" href="../publics/styles/profile.css">
 </head>
-    <!-- header/nav bar -->
+<!-- <header></header> -->
+<header>
     <nav class="navbar navbar-expand-lg navbar-wrap">
         <div class="container">
             <a href="#" class="navbar-brand">FitUS</a>
@@ -23,67 +24,97 @@
                         <a href="#" class="nav-link">Food Portion</a>
                     </li>
                 </ul>
-                <a href="login"><button class="log-in-btn">Log in</button></a>
+                <a href="../login_module/login_page/login.html"><button class="log-in-btn">Log in</button></a>
             </div>
         </div>
     </nav>
 </header>
 <body>
-    <div>
-        <div id="background"></div>
-        <div id="avatar"> 
-            <div class="row d-flex justify-content-center">
-                <div class="rounded-circle border "
-                    style="width:150px;height:150px;" alt="Avatar">
-                    <!-- <i class="fas fa-user-alt fa-3x text-info"></i> -->
-                </div>
-                <div class="row d-flex justify-content-center" style="font-size:xx-large">
-                    <b>
-                    Username
-                    </b>
-                </div>
+    <div class = "rounded-5 mb-5 pt-3 pb-5" id="profile_info">
+        <div class = "d-flex justify-content-center">
+            <div class="row rounded-circle "
+                style="width:150px;height:150px;margin-top:10px; border-color: green; border-style:solid" alt="Avatar">
+              <!-- <i class="fas fa-user-alt fa-3x text-info"></i> -->
             </div>
         </div>
-        <div class="rounded-5" id="show_infor">
-            <div>
-                <div style="margin-left:40px; margin-top:20px; padding-top:30px">
-                    <b style="font-size:xx-large;">User information</b>
-                    <div class="row">
-                        <div class="col">
-                            <div class="row">
-                                <p>Username:  </p>
-                            </div>
-                            <div class="row">
-                                <p>Email: </p>
-                            </div>
-                            <div class="row">
-                                <p>Phone number: </p>
-                            </div>
-                            <div class="row">
-                                <p>Date of birth: </p>
-                            </div>
+
+        <div class = "d-flex justify-content-center mt-4 mb-5">
+            <div class = "row" style="font-size:xx-large">
+                <b>Username</b>
+            </div>
+        </div>
+        <div>
+            <div class="rounded-5" id="show_infor">
+                <div class="row ps-5 pe-5">
+                    <div class="col ms-5">
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Username: </b>
+                            <b class="col-sm-7" id="Username"></b>
                         </div>
-                        <div class="col">
-                            <div class="row">
-                                <p>Gender: </p>
-                            </div>
-                            <div class="row">
-                                <p>Address: </p>
-                            </div>
-                            <div class="row">
-                                <p>Country: </p>
-                            </div>
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Email: </b>
+                            <b class="col-sm-7" id="Email"></b>
+                        </div>
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Phone number: </b>
+                            <b class="col-sm-7" id="Phone_number"></b>
+                        </div>
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Date of birth: </b>
+                            <b class="col-sm-7" id="Date_of_birth"></b>
+                        </div>
+                    </div>
+                    <div class="col ms-5">
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Gender: </b>
+                            <b class="col-sm-7" id="Gender"></b>
+                        </div>
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Address: </b>
+                            <b class="col-sm-7" id="Address"></b>
+                        </div>
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Country: </b>
+                            <b class="col-sm-7" id="Country"></b>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-3"></div>
-            <div id="button">
-                <a class="btn btn-primary rounded-5" href="editprofile" role="button">Update your profile</a>
+            <div id="button" class="row mt-3">
+                <div>
+                    <a class="btn btn-primary rounded-5" href="editprofile" role="button">Update your profile</a>
+                </div>
             </div>
         </div>
-    </div>
+            <script>
+                const information = {
+                    username: "Le Xuan Dat",
+                    email: "datvippromax@gmail.com",
+                    phone_number: "09000029200",
+                    date_of_birth: "12-23-2003",
+                    gender: "Male",
+                    address: "123-2323-2323",
+                    country: "O duoi que",
+                };
+                // Using template literals for string interpolation
+                let Username = document.querySelector('#Username')
+                let Email = document.querySelector('#Email')
+                let Phone_number = document.querySelector('#Phone_number')
+                let Date_of_birth = document.querySelector('#Date_of_birth')
+                let Gender = document.querySelector('#Gender')
+                let Address = document.querySelector('#Address')
+                let Country = document.querySelector('#Country')
+                Username.textContent = information.username
+                Email.textContent = information.email
+                Phone_number.textContent = information.phone_number
+                Date_of_birth.textContent = information.date_of_birth
+                Gender.textContent = information.gender
+                Address.textContent = information.address
+                Country.textContent = information.country
+            </script>
+        </div>
+    </div>  
+</div>
     
 </body>
 </html>

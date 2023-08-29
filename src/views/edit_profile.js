@@ -8,12 +8,12 @@ let currentDay = new Date()
 date.onkeyup = function() {
     let input_year = parseInt(date.value.substr(0, 4))
     let current_year = currentDay.getFullYear()
+    console.log(input_year)
     if (isNaN(input_year)){
-        
+        button.setAttribute("disabled", "")
     }
     else{
         if (input_year > current_year){
-            button.setAttribute("disabled", "")
         }
         else{
             if ((current_year - input_year > 6) && (current_year - input_year < 120)){

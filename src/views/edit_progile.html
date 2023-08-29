@@ -63,9 +63,25 @@
                         <div class="row mt-3">
                             <p>Email: </p>
                         </div>
-                        <div class="row pe-5 ps-2">
-                            <input type="text" id="Email" class="form-control " name="Email" readonly>
+                        <div class="row pe-5 ps-2" >
+                            <input type="text" id="Email" class="form-control" name="Email"  readonly>
                         </div>
+                        <script>
+                            const information = {
+                                username: "Le Xuan Dat",
+                                email: "datvippromax@gmail.com",
+                                phone_number: "09000029200",
+                                date_of_birth: "12-23-2003",
+                                gender: "Male",
+                                address: "123-2323-2323",
+                                country: "O duoi que",
+                            };
+                            let email_data = information.email
+                            // Using template literals for string interpolation
+                            let Email = document.querySelector('#Email')
+                            Email.setAttribute("value", email_data)
+                        </script>
+                            
                         <div class="row mt-3">
                             <p>Phone number: </p>
                         </div>

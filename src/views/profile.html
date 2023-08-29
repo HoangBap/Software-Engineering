@@ -57,41 +57,73 @@
                 <div class="row ps-5 pe-5">
                     <div class="col ms-5">
                         <div class="row mb-3" style="font-size:large">
-                            <b>Username:  </b>
+                            <b class="col-sm-5">Username: </b>
+                            <b class="col-sm-7" id="Username"></b>
                         </div>
                         <div class="row mb-3" style="font-size:large">
-                                <b>Email: </b>
-                            </div>
-                            <div class="row mb-3" style="font-size:large">
-                                <b>Phone number: </b>
-                            </div>
-                            <div class="row mb-3" style="font-size:large">
-                                <b>Date of birth: </b>
-                            </div>
+                            <b class="col-sm-5">Email: </b>
+                            <b class="col-sm-7" id="Email"></b>
                         </div>
-                        <div class="col ms-5">
-                            <div class="row mb-3" style="font-size:large">
-                                <b>Gender: </b>
-                            </div>
-                            <div class="row mb-3" style="font-size:large">
-                                <b>Address: </b>
-                            </div>
-                            <div class="row mb-3" style="font-size:large">
-                                <b>Country: </b>
-                            </div>
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Phone number: </b>
+                            <b class="col-sm-7" id="Phone_number"></b>
+                        </div>
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Date of birth: </b>
+                            <b class="col-sm-7" id="Date_of_birth"></b>
                         </div>
                     </div>
-                </div>
-                <div id="button" class="row mt-3">
-                    <div>
-                        <a class="btn btn-primary rounded-5" href="editprofile" role="button">Update your profile</a>
+                    <div class="col ms-5">
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Gender: </b>
+                            <b class="col-sm-7" id="Gender"></b>
+                        </div>
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Address: </b>
+                            <b class="col-sm-7" id="Address"></b>
+                        </div>
+                        <div class="row mb-3" style="font-size:large">
+                            <b class="col-sm-5">Country: </b>
+                            <b class="col-sm-7" id="Country"></b>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div id="button" class="row mt-3">
+                <div>
+                    <a class="btn btn-primary rounded-5" href="editprofile" role="button">Update your profile</a>
+                </div>
+            </div>
+        </div>
+            <script>
+                const information = {
+                    username: "Le Xuan Dat",
+                    email: "datvippromax@gmail.com",
+                    phone_number: "09000029200",
+                    date_of_birth: "12-23-2003",
+                    gender: "Male",
+                    address: "123-2323-2323",
+                    country: "O duoi que",
+                };
+                // Using template literals for string interpolation
+                let Username = document.querySelector('#Username')
+                let Email = document.querySelector('#Email')
+                let Phone_number = document.querySelector('#Phone_number')
+                let Date_of_birth = document.querySelector('#Date_of_birth')
+                let Gender = document.querySelector('#Gender')
+                let Address = document.querySelector('#Address')
+                let Country = document.querySelector('#Country')
+                Username.textContent = information.username
+                Email.textContent = information.email
+                Phone_number.textContent = information.phone_number
+                Date_of_birth.textContent = information.date_of_birth
+                Gender.textContent = information.gender
+                Address.textContent = information.address
+                Country.textContent = information.country
+            </script>
         </div>
     </div>  
-    </div>
-    
+</div>
     
 </body>
 </html>

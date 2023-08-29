@@ -11,8 +11,8 @@
             "driver": "MySQL",
             "name": "Database",
             "database": "account_management",
-            "username": "huyhoang",
-            "password": "12345"
+            "username": "sqluser",
+            "password": "password"
         }
     ]
 }

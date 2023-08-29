@@ -14,6 +14,11 @@ router
     .get(controller.registerView)
     .post(controller.register)
 
+router
+    .route('/logout')
+    .get(controller.logoutView)
+    .post(controller.logout)
+
 // router
 //     .route('/logout')
 //     .get(controller.logout)

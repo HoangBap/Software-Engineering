@@ -11,10 +11,10 @@ CREATE TABLE UserProfile (
     user_ID INT,
     fullname TEXT,
     phone_number VARCHAR(20),
-    gender CHAR(3),
+    gender CHAR(5),
     home_address TEXT,
     country TEXT,
-    date_of_birth DATE,
+    date_of_birth VARCHAR(30),
     CONSTRAINT FK_userIDprofile_ID FOREIGN KEY (user_ID) references User(ID)
 );
 

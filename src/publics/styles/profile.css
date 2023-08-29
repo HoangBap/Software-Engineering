@@ -57,31 +57,19 @@ body {
 
 } */
 
-#background{
-    background-image: url('../picture/background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 30vh;
-}
-
-#avatar{
-    position: absolute;
-    top: 70px;
-    left: 600px;
-    width: 200px;
-    height: 200px;
-}
-
-#show_infor{
-    margin-top: 70px;
+#profile_info{
+    margin-top: 100px;
     margin-left: 200px;
-    width:1000px;
-    height: 250px;
+    margin-right: 200px;
     background-color: #DCE4EF;
+}
 
+header{
+    position: fixed;
+    top:0;
+    width: 100%;
 }
 
 #button{
-    margin-left: 1020px;
-    margin-right:230px
+    margin-left: 800px;
 }

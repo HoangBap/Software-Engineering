@@ -3,8 +3,12 @@ import healthRecordController from '../controllers/userHealthRecord.js';
 
 const router = express.Router();
 
-router.get('/health-records', healthRecordController.viewHealthRecord);
-router.post('/edit-health-record', healthRecordController.editHealthRecord);
-router.post('/delete-health-record', healthRecordController.deleteHealthRecord);
+router.get('/view-records', healthRecordController.viewHealthRecord);
+router.post('/edit-record', healthRecordController.editHealthRecord);
+router.post('/delete-record', healthRecordController.deleteHealthRecord);
+
+router.post('/create-record', healthRecordController.createUserHealthRecord)
+
+router.get('/pundunghuyen', healthRecordController.pun)
 
 export default router;

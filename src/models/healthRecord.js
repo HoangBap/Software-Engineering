@@ -6,44 +6,53 @@ export async function createUserHealthRecord(user_ID, height, weight, blood_suga
         INSERT INTO UserHealthRecord (user_ID, height_value, weight_value, blood_sugar, heart_rate, heart_pressure_systolic, heart_pressure_diastolic, submit_date)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `, [user_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure, submit_date]);
-
-    return result.insertId; // Tự tăng ID của health rec vừa insert vào database, rồi trả về
-    // vd user 1 có 1 health rec sẵn r thì cái result.insertID trả về 2
 }
+
 
 // Lấy health rec dựa vào ID user (stt trong database)
 export async function getUserHealthRecord(user_ID) {
     const [rows] = await pool.query(`
-        SELECT *
+        SELECT record_ID as rerordID, user_ID as userID, height_value, weight_value, blood_sugar, heart_rate, heart_pressure_systolic, heart_pressure_diastolic, DATE_FORMAT(submit_date, '%Y-%m-%d') as submit_date
         FROM UserHealthRecord
         WHERE user_ID = ?
     `, [user_ID]);
 
-    return rows[0];
+    return rows;
 }
 
 // Update health rec
-export async function updateUserHealthRecord(record_ID, user_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure, submit_date) {
+export async function editUserHealthRecord(user_ID, record_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure) {
     const [result] = await pool.query(`
-        UPDATE UserHealthRecord
-        SET user_ID = ?, height_value = ?, weight_value = ?, blood_sugar = ?, heart_rate = ?, heart_pressure_systolic = ?, heart_pressure_diastolic = ?, submit_date = ?
-        WHERE record_ID = ?
-    `, [user_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure, submit_date, record_ID]);
-    // console.log('Update health record successfully!') 
+        UPDATE UserHealthRecord SET height_value = ?, weight_value = ?, blood_sugar = ?, heart_rate = ?, heart_pressure_systolic = ?, heart_pressure_diastolic = ? WHERE user_ID = ${user_ID} AND record_ID = ${record_ID}`, [height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure]);
+    console.log('Update health record successfully!') 
     
-    // UN thông báo bên controllers á do gọi hàm này bên đó, Bắp thì thông báo bên models
-    // Nói chung thì thông báo cho server biết thôi nên cũng như nhao
-
-    return result[0];
 }
 
 // Delete, chỉ thay đổi trong database thôi chứ không trả gì cho bên controller nữa  
 export async function deleteUserHealthRecord(user_ID, record_ID) {
     const [result] = await pool.query(`
         DELETE FROM UserHealthRecord
-        WHERE record_ID = ?, user_ID = ?
+        WHERE record_ID = ? AND user_ID = ?
     `, [record_ID, user_ID]);
 
     // console.log('Delete health record successfully!') // Thông báo bên server thôi
     // return True // Trả về flag thông báo đã xóa thành công
+}
+
+export async function getLastSubmitDate(user_ID){
+    const[result] = await pool.query(`
+        SELECT submit_date FROM UserHealthRecord
+        WHERE user_ID = ${user_ID}
+        ORDER BY submit_date DESC
+    `)
+
+    if (result.length){
+        return result[0].submit_date
+    }
+    return new Date('1990-10-26');
+}
+
+export async function separateDate(Date){
+    const result = Date.split("T")
+    return result[0]
 }

@@ -49,10 +49,24 @@ body {
     font-weight: 600;
 }
 
+header{
+    position: fixed;
+    top:0;
+    width: 100%;
+}
+
 #pic_1{
+    margin-top: 70px;
     background-image: url('../picture/doctor.png');
     background-repeat: no-repeat;
     background-size:cover;
     height: 100vh;
+}
 
+#FitUS{
+    padding-top: 300px;
+    font-size: 70px;
+    border-style: dotted;
+    padding-left: 300px;
+    padding-right: 300px;
 }

@@ -1,5 +1,5 @@
 <%- include('layout.ejs'); %>
-<link rel="stylesheet" href="../publics/styles/profile.css">
+<link rel="stylesheet" href="styles/profile.css">
 </head>
 <!-- <header></header> -->
 <header>
@@ -24,7 +24,7 @@
                         <a href="#" class="nav-link">Food Portion</a>
                     </li>
                 </ul>
-                <a href="../login_module/login_page/login.html"><button class="log-in-btn">Log in</button></a>
+                <a href="login"><button class="log-in-btn">Log in</button></a>
             </div>
         </div>
     </nav>
@@ -82,35 +82,29 @@
             </div>
             <div id="button" class="row mt-3">
                 <div>
-                    <a class="btn btn-primary rounded-5" href="editprofile" role="button">Update your profile</a>
+                    <a class="btn btn-primary rounded-5" href="edit_profile" role="button">Update your profile</a>
                 </div>
             </div>
         </div>
             <script>
-                const information = {
-                    username: "Le Xuan Dat",
-                    email: "datvippromax@gmail.com",
-                    phone_number: "09000029200",
-                    date_of_birth: "12-23-2003",
-                    gender: "Male",
-                    address: "123-2323-2323",
-                    country: "O duoi que",
-                };
                 // Using template literals for string interpolation
-                let Username = document.querySelector('#Username')
-                let Email = document.querySelector('#Email')
-                let Phone_number = document.querySelector('#Phone_number')
-                let Date_of_birth = document.querySelector('#Date_of_birth')
-                let Gender = document.querySelector('#Gender')
-                let Address = document.querySelector('#Address')
-                let Country = document.querySelector('#Country')
-                Username.textContent = information.username
-                Email.textContent = information.email
-                Phone_number.textContent = information.phone_number
-                Date_of_birth.textContent = information.date_of_birth
-                Gender.textContent = information.gender
-                Address.textContent = information.address
-                Country.textContent = information.country
+                // let Username = document.querySelector('#Username')
+                // let Email = document.querySelector('#Email')
+                // let Phone_number = document.querySelector('#Phone_number')
+                // let Date_of_birth = document.querySelector('#Date_of_birth')
+                // let Gender = document.querySelector('#Gender')
+                // let Address = document.querySelector('#Address')
+                // let Country = document.querySelector('#Country')
+                // fetch('/profile')
+                //     .then(function(res) {
+                //         return res.json()
+                //     })
+                //     .then(function(data) {
+                //         console.log(data)
+                //     })
+                //     .catch(function(err) {
+                //         console.log("error");
+                //     })
             </script>
         </div>
     </div>  

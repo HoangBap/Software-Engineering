@@ -1,85 +1,120 @@
-import { createUserHealthRecord, getUserHealthRecord, updateUserHealthRecord, deleteUserHealthRecord } from '../models/userHealthRecord.js';
-import { getUser } from '../models/user.js';
+import { createUserHealthRecord, getUserHealthRecord, editUserHealthRecord, deleteUserHealthRecord } from '../models/healthRecord.js';
+import { getUser, getUserByID } from '../models/user.js';
+import { getLastSubmitDate } from '../models/healthRecord.js';
 
 const healthRecordController = {};
 
+healthRecordController.healthRecordPanel = (req, res) => {
+    if(!req.signedCookies.userID || !req.cookies.email) {
+        res.redirect('login')
+        return 
+    }
+
+    const isRealUser = getUserByID(req.signedCookies.userID);
+    if (isRealUser) {
+        res.render('health_record')
+    }
+    else {
+        res.clearCookie('userID', {path: '/'})
+        res.clearCookie('email', {path: '/'})
+        res.redirect('login')
+    }
+}
 
 healthRecordController.createUserHealthRecord = async (req, res) => {
-    const { record_ID, user_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure, submit_date } = req.body;
+    const {height_value, weight_value, blood_sugar, heart_rate, heart_pressure_systolic, heart_pressure_diastolic} = req.body;
+    const userID = req.signedCookies.userID
+    const email = req.cookies.email
 
     // Kiểm tra xem user có tồn tại k
-    const cur_user = await getUserByEmail(email); 
+    const cur_user = await getUser(email); 
     if (!cur_user) {
         console.log(`User with email ${email} not found!`);
         res.json({ flag: 2 }); // Trả về fail vì user không tồn tại / lỗi hệ thống 
     }
 
+    // const last_submit = await getLastSubmitDate(userID)
 
     // Kiểm tra xem user đã có health record cho ngày đó chưa
-    if (cur_user.user_ID == user_ID && cur_user.submit_date == submit_date){
-        console.log(`Health record for user ${cur_user.email} on ${submit_date} already exists!`);
+    const lastSubmitDate = await getLastSubmitDate(userID); // Lấy ngày gửi cuối cùng của người dùng
+
+    const currentDateFromForm = new Date(); // Chuyển đổi ngày từ form thành đối tượng Date
+    const currentDateWithoutTime = new Date(currentDateFromForm.getFullYear(), currentDateFromForm.getMonth(), currentDateFromForm.getDate());
+
+    const lastSubmitDateWithoutTime = new Date(lastSubmitDate.getFullYear(), lastSubmitDate.getMonth(), lastSubmitDate.getDate());
+
+    if (lastSubmitDateWithoutTime.getTime() == currentDateWithoutTime.getTime()) {
+        console.log(`Health record for user ${cur_user.email} on ${currentDateFromForm} already exists!`);
         res.json({ flag: 3 }); // Trả về flag exist
         return;
     }
 
+
     // Nếu không có health record cho ngày đó, tạo mới
 
-    await createUserHealthRecord(record_ID, user_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure, submit_date);
-    console.log(`Created health record with ID ${record_ID} for user ${cur_user.email} on ${submit_date}`);
+    await createUserHealthRecord(userID, parseInt(height_value), parseInt(weight_value), parseInt(blood_sugar), parseInt(heart_rate), parseInt(heart_pressure_systolic), parseInt(heart_pressure_diastolic), currentDateFromForm);
+    console.log(`Created health record for user ${cur_user.email} on ${currentDateFromForm}`);
     res.json({ flag: 1 }); // successfully nhó
 };
 
 // Xem health rec
 healthRecordController.viewHealthRecord = async (req, res) => {
-    const { cur_user } = req.cookies;
+    const userID = req.signedCookies.userID;
 
-    if (!cur_user) {
+    if (!userID) {
         console.log("User not logged in!");
         return res.redirect("/login");
     }
 
-    const healthRecords = await getUserHealthRecord(cur_user.user_ID);
+    const healthRecords = await getUserHealthRecord(userID);
 
-    res.render("healthRecords", { healthRecords });
+    res.json(healthRecords)
 };
 
-// view health rec: không biết có nên check là có database ko
-// edit đang hok biết là có cần check việc user có heath record trong database chưa á :">
-// hoặc không có thì sẽ không hiện nút edit (kt rồi đặt flag để làm cái này)
+
 healthRecordController.editHealthRecord = async (req, res) => {
-    const { record_ID, user_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure, submit_date } = req.body;
+    const {recordID, height_value, weight_value, blood_sugar, heart_rate, heart_pressure_systolic, heart_pressure_diastolic} = req.body;
+    const userID = req.signedCookies.userID
+    const email = req.cookies.email
+    
+    // Kiểm tra xem người dùng có tồn tại không, dựa vào mail
+    const cur_user = await getUser(email);
+    if (!cur_user) {
+        console.log(`User ${email} not found!`);
+        res.json({ flag: 2 }); // Trả về fail vì user không tồn tại / lỗi hệ thống 
+        // return res.redirect('/login'); // Chuyển hướng về login
+    }
+
+    // Cập nhật, trả về để có gì muốn view thì view luôn
+    await editUserHealthRecord(userID, recordID, parseInt(height_value), parseInt(weight_value), parseInt(blood_sugar), parseInt(heart_rate), parseInt(heart_pressure_systolic), parseInt(heart_pressure_diastolic));
+
+    console.log(`Updated health record ${recordID} for user ${cur_user.email}`);
+    
+    // Gửi json thông báo chỉnh sửa thành công
+    res.json({ flag: 1 });
+    // res.redirect('/homepage'); // Chuyển hướng người dùng đến trang hồ sơ
+};
+
+// Delete
+healthRecordController.deleteHealthRecord = async (req, res) => {
+    const { recordID } = req.body;
+    const userID = req.signedCookies.userID
+    const email = req.cookies.email
 
     // Kiểm tra xem người dùng có tồn tại không, dựa vào mail
     const cur_user = await getUser(email);
     if (!cur_user) {
         console.log(`User ${email} not found!`);
-        return res.redirect('/login'); // Chuyển hướng về login
+        res.json({ flag: 2 }); // Trả về fail vì user không tồn tại / lỗi hệ thống 
+        // return res.redirect('/login'); // Chuyển hướng về login
     }
 
-    // Cập nhật, trả về để có gì muốn view thì view luôn
-    updated_rec = await updateUserHealthRecord(record_ID, user_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure, submit_date);
-
-    console.log(`Updated health record with ID ${record_ID} for user ${cur_user.email}`);
-    
-    // Đặt cookie thông báo chỉnh sửa thành công
-    res.cookie('editSuccess', 'true');
-
-    res.redirect('/homepage'); // Chuyển hướng người dùng đến trang hồ sơ
-};
-
-// Delete
-healthRecordController.deleteHealthRecord = async (req, res) => {
-    const { record_ID } = req.body;
-
     // delete ko trả về gì hết
-    await deleteUserHealthRecord(record_ID);
+    await deleteUserHealthRecord(userID, recordID);
 
-    console.log(`Deleted health record with ID ${record_ID}`);
-    
-    // Đặt cookie thông báo xóa thành công
-    res.cookie('deleteSuccess', 'true');
+    console.log(`Deleted health record with ID ${recordID} for user ${cur_user.email}`);
+    res.json({ flag: 1 });
 
-    res.redirect('/homepage'); // Chuyển hướng người dùng đến trang hồ sơ
 };
 
 export default healthRecordController;

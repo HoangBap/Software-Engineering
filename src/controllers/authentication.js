@@ -1,4 +1,4 @@
-import {getUser, createUser} from '../models/user.js'
+import {getUser, getUserByID, createUser} from '../models/user.js'
 import {createUserProfile} from '../models/userProfile.js'
 import bcrypt from 'bcrypt'
 
@@ -31,7 +31,7 @@ controller.login = async (req, res) => {
         res.cookie(`userID`, cur_user.ID, {signed: true})
         res.cookie(`email`, cur_user.email)
 
-        res.redirect("homepage")
+        res.redirect("landing_page")
         return
         
     } else { //Failed
@@ -76,7 +76,7 @@ controller.register = async (req, res, next) => {
             res.cookie(`userID`, userID, {signed: true})
             res.cookie(`email`, email)
 
-            res.redirect("/homepage")
+            res.redirect("/landing_page")
         }
     }
     return 
@@ -90,7 +90,7 @@ controller.loginView = (req, res) => {
 
     const isRealUser = getUserByID(req.signedCookies.userID);
     if (isRealUser) {
-        res.redirect('/homepage')
+        res.redirect('/landing_page')
     }
     
     else {
@@ -108,13 +108,13 @@ controller.registerView = (req, res) => {
 
     const isRealUser = getUserByID(req.signedCookies.userID);
     if (isRealUser) {
-        res.redirect('/homepage')
+        res.redirect('/landing_page')
     }
     
     else {
-        res.clearCookie('userID')
-        res.clearCookie('email')
-        res.render('register')
+        res.clearCookies('userID')
+        res.clearCookies('email')
+        res.redirect('register')
     }
 }
 

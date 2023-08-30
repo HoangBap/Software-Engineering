@@ -43,7 +43,8 @@ controller.viewprofile = async(req, res) => {
     console.log('UserID: ', userID)
 
     const user_profile = await getUserProfile(userID)
-    res.render("profile")
+    res.render("profile", {email: email, fullname: user_profile.fullname, phone_number: user_profile.phone_number, gender: user_profile.gender, home_address: user_profile.home_address, country: user_profile.country, date_of_birth: user_profile.date_of_birth})
     return
 }
+
 export default controller

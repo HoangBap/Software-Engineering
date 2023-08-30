@@ -3,7 +3,7 @@ import controller from '../controllers/homepage.js'
 const router = express.Router()
 
 router
-    .route('/homepage')
+    .route('/landing_page')
     .get(controller.homePageView)
     
 export default router

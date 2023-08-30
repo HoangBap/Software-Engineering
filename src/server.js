@@ -3,7 +3,6 @@ import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import cookieParser from 'cookie-parser'
-import session from 'express-session'
 
 //Import local files
 import userRouter from './routes/authentication.js'
@@ -21,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'publics')))
 app.set('view engine', 'ejs')
 
 //Indicate to use the signed cookies
-app.use(cookieParser())
+app.use(cookieParser(process.env.SECRET_KEY))
 
 //___________________________________________
 app.use(express.urlencoded({extended: true}))

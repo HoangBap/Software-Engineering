@@ -9,12 +9,12 @@ controller.login = async (req, res) => {
     const { email, user_password } = req.body;
     console.log(`User ${email} is trying to log in!`)
 
-    // Checking if there are any empty fields
-    if (!email || !user_password) {
-        console.log('User must fill all the empty fields!');
-        res.render("login", { email: req.body.email, user_password: req.body.user_password || null });
-        return 
-    }
+    // // Checking if there are any empty fields
+    // if (!email || !user_password) {
+    //     console.log('User must fill all the empty fields!');
+    //     res.render("login", { email: req.body.email, user_password: req.body.user_password || null });
+    //     return 
+    // }
 
     const cur_user = await getUser(email); //Get the user with the email from the database 
     if (!cur_user) { //User is not in the database yet!
@@ -28,15 +28,8 @@ controller.login = async (req, res) => {
     if (isMatch) { // Successfully
         console.log(`Welcome back, ${email}!`)
 
-        res.cookie(`userID`, cur_user.ID, {
-            secure: true,
-            httpOnly: true,
-        })
-    
-        res.cookie(`email`, cur_user.email, {
-            secure: true,
-            httpOnly: true,
-        })
+        res.cookie(`userID`, cur_user.ID, {signed: true})
+        res.cookie(`email`, cur_user.email)
 
         res.redirect("homepage")
         return
@@ -49,13 +42,13 @@ controller.login = async (req, res) => {
 
 controller.register = async (req, res, next) => {
     const {email, user_password, confirm} = req.body
-
-    //Checking if there are any empty fields
-    if ( !email || !user_password || !confirm) {
-        console.log('User must fill all the empty fields!')
-        res.render("register.ejs", {email: req.body.email, user_password: req.body.user_password, confirm: req.body.confirm || null})
-        return 
-    } 
+    console.log(`User ${email} is trying to register`)
+    // //Checking if there are any empty fields
+    // if ( !email || !user_password || !confirm) {
+    //     console.log('User must fill all the empty fields!')
+    //     res.render("register.ejs", {email: req.body.email, user_password: req.body.user_password, confirm: req.body.confirm || null})
+    //     return 
+    // } 
 
     //Password and confirm must match
     if (user_password != confirm) { //If not match, user must re-enter the password
@@ -80,15 +73,8 @@ controller.register = async (req, res, next) => {
             await createUserProfile(userID) //creating the initial profile for the user
 
             //Sending cookie back to the client
-            res.cookie(`userID`, userID, {
-                secure: true,
-                httpOnly: true
-            })
-        
-            res.cookie(`email`, email, {
-                secure: true,
-                httpOnly: true
-            })
+            res.cookie(`userID`, userID, {signed: true})
+            res.cookie(`email`, email)
 
             res.redirect("/homepage")
         }
@@ -96,35 +82,40 @@ controller.register = async (req, res, next) => {
     return 
 }
 
-//For Register Page
-controller.registerView = (req, res) => {
-    // if (checkingUser(req, res)) {
-    //     return 
-    // }
-    const email = req.cookies.email || null
-    if (email == null) {
-        res.render("register")
+controller.loginView = (req, res) => {
+    if (!req.signedCookies.userID || !req.cookies.email){
+        res.render('login')
         return 
     }
 
-    res.redirect("homepage")
-    return
+    const isRealUser = getUserByID(req.signedCookies.userID);
+    if (isRealUser) {
+        res.redirect('/homepage')
+    }
+    
+    else {
+        res.clearCookie('userID')
+        res.clearCookie('email')
+        res.render('login')
+    }
 }
 
-// For Login View 
-controller.loginView = (req, res) => {
-    // //User has already accessed the website once
-    // if (checkingUser(req, res)) {
-    //     return 
-    // }
-    const email = req.cookies.email || null
-    if (email == null) {
-        res.render("login")
+controller.registerView = (req, res) => {
+    if (!req.signedCookies.userID || !req.cookies.email){
+        res.render('register')
         return 
     }
 
-    res.redirect("homepage")
-    return
+    const isRealUser = getUserByID(req.signedCookies.userID);
+    if (isRealUser) {
+        res.redirect('/homepage')
+    }
+    
+    else {
+        res.clearCookie('userID')
+        res.clearCookie('email')
+        res.render('register')
+    }
 }
 
 controller.logoutView = (req, res) => {

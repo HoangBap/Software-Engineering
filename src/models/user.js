@@ -6,13 +6,27 @@ export async function getAllData() {
     return rows
 }
 
-//Tim user voi email
+//Get user's information by using email
 export async function getUser(email) {
     const [rows] = await pool.query(`
     SELECT *
     FROM user
     WHERE email = ?
     `, [email])
+
+    if(rows[0] == null)
+        return null
+
+    return rows[0]
+}
+
+//Get user's information by using ID
+export async function getUserByID(ID) {
+    const [rows] = await pool.query(`
+    SELECT *
+    FROM user
+    WHERE ID = ?
+    `, [ID])
 
     if(rows[0] == null)
         return null

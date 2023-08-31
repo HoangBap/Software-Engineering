@@ -1,28 +1,24 @@
-import { createUserProfile, getUserProfile, updateUserProfile } from "../models/userProfile.js"
-import { createUser, getUser } from "../models/user.js"
+import { getUserProfile, updateUserProfile } from "../models/userProfile.js"
+import { getUser } from "../models/user.js"
 const controller = {}
 
 //Update the user profile
 controller.updateprofile = async (req, res) => {
-    const userID = Number(req.cookies.userID) //data stored in cookie is a string so need to be converted to int value
-    const {fullname, phone_number, date_of_birth, gender, home_address, country} = req.body
-
-    console.log(fullname)
-    console.log("User trying to update the profile")
-    
-    const flag = await updateUserProfile(userID, fullname, phone_number, gender, home_address, country, date_of_birth)
+    const userID = req.signedCookies.userID
+    const {Fullname, Phone_number, Date_of_birth, Gender, Address, Country} = req.body
+    const flag = await updateUserProfile(userID, Fullname, Phone_number, Gender, Address, Country, Date_of_birth)
     if(flag) {
-        console.log('Function update user is working fine')
+        console.log('Function update user\'s profile is working fine')
     } else {
         console.log('Something is wrong!')
     }
     
-    res.redirect("homepage")
+    res.redirect("profile")
     return 
 }
 
 controller.getprofile = async (req, res) => {
-    const userID = req.cookies.userID
+    const userID = req.signedCookies.userID
     const email = req.cookies.email
 
     if(!userID) {
@@ -36,17 +32,20 @@ controller.getprofile = async (req, res) => {
 }
 
 controller.viewprofile = async(req, res) => {
-    const userID = req.cookies.userID
-    const email = req.cookies.email
+    res.render('profile')
+}
 
+controller.sendprofile = async(req, res) => {
+    const userID = req.signedCookies.userID
+    const email = req.cookies.email
     if(!userID) {
         console.log('Cannot retrieve the cookie!')
         return
     }
-    console.log('UserID: ', userID)
 
     const user_profile = await getUserProfile(userID)
-    res.render("profile")
+    res.json({email: email, fullname: user_profile.fullname, phone_number: user_profile.phone_number, date_of_birth: user_profile.date_of_birth, gender: user_profile.gender, address: user_profile.home_address, country: user_profile.country})
     return
 }
+
 export default controller

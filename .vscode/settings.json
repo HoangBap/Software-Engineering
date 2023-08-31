@@ -9,10 +9,11 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "Database",
+            "name": "localhost",
             "database": "account_management",
-            "username": "sqluser",
-            "password": "password"
+            "username": "root",
+            "askForPassword": true
         }
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }

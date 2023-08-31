@@ -1,5 +1,19 @@
-<%- include('layout.ejs'); %>
-<link rel="stylesheet" href="../publics/styles/profile.css">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    <title>HealthFitUS</title>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" ></script>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="styles/profile.css">
 </head>
 <!-- <header></header> -->
 <header>
@@ -24,7 +38,7 @@
                         <a href="#" class="nav-link">Food Portion</a>
                     </li>
                 </ul>
-                <a href="../login_module/login_page/login.html"><button class="log-in-btn">Log in</button></a>
+                <a href="login"><button class="log-in-btn">Log in</button></a>
             </div>
         </div>
     </nav>
@@ -33,8 +47,10 @@
     <div class = "rounded-5 mb-5 pt-3 pb-5" id="profile_info">
         <div class = "d-flex justify-content-center">
             <div class="row rounded-circle "
-                style="width:150px;height:150px;margin-top:10px; border-color: green; border-style:solid" alt="Avatar">
-              <!-- <i class="fas fa-user-alt fa-3x text-info"></i> -->
+                style="width:150px;height:150px;margin-top:10px; border-color: black; border-style:solid" alt="Avatar">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                </svg>
             </div>
         </div>
 
@@ -48,16 +64,16 @@
                 <div class="row ps-5 pe-5">
                     <div class="col ms-5">
                         <div class="row mb-3" style="font-size:large">
-                            <b class="col-sm-5">Username: </b>
-                            <b class="col-sm-7" id="Username"></b>
+                            <b class="col-sm-5">Fullname: </b>
+                            <b class="col-sm-7" id="Fullname" style="word-wrap:break-word"></b>
                         </div>
                         <div class="row mb-3" style="font-size:large">
                             <b class="col-sm-5">Email: </b>
-                            <b class="col-sm-7" id="Email"></b>
+                            <b class="col-sm-7" id="Email" style="word-wrap:break-word"></b>
                         </div>
                         <div class="row mb-3" style="font-size:large">
                             <b class="col-sm-5">Phone number: </b>
-                            <b class="col-sm-7" id="Phone_number"></b>
+                            <b class="col-sm-7" id="Phone_number" style="word-wrap:break-word"></b>
                         </div>
                         <div class="row mb-3" style="font-size:large">
                             <b class="col-sm-5">Date of birth: </b>
@@ -67,50 +83,48 @@
                     <div class="col ms-5">
                         <div class="row mb-3" style="font-size:large">
                             <b class="col-sm-5">Gender: </b>
-                            <b class="col-sm-7" id="Gender"></b>
+                            <b class="col-sm-7" id="Gender" ></b>
                         </div>
                         <div class="row mb-3" style="font-size:large">
                             <b class="col-sm-5">Address: </b>
-                            <b class="col-sm-7" id="Address"></b>
+                            <b class="col-sm-7" id="Address" style="word-wrap:break-word"></b>
                         </div>
                         <div class="row mb-3" style="font-size:large">
                             <b class="col-sm-5">Country: </b>
-                            <b class="col-sm-7" id="Country"></b>
+                            <b class="col-sm-7" id="Country" style="word-wrap:break-word"></b>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="button" class="row mt-3">
                 <div>
-                    <a class="btn btn-primary rounded-5" href="editprofile" role="button">Update your profile</a>
+                    <a class="btn btn-primary rounded-5" href="edit_profile" role="button">Update your profile</a>
                 </div>
             </div>
         </div>
             <script>
-                const information = {
-                    username: "Le Xuan Dat",
-                    email: "datvippromax@gmail.com",
-                    phone_number: "09000029200",
-                    date_of_birth: "12-23-2003",
-                    gender: "Male",
-                    address: "123-2323-2323",
-                    country: "O duoi que",
-                };
                 // Using template literals for string interpolation
-                let Username = document.querySelector('#Username')
-                let Email = document.querySelector('#Email')
-                let Phone_number = document.querySelector('#Phone_number')
-                let Date_of_birth = document.querySelector('#Date_of_birth')
-                let Gender = document.querySelector('#Gender')
-                let Address = document.querySelector('#Address')
-                let Country = document.querySelector('#Country')
-                Username.textContent = information.username
-                Email.textContent = information.email
-                Phone_number.textContent = information.phone_number
-                Date_of_birth.textContent = information.date_of_birth
-                Gender.textContent = information.gender
-                Address.textContent = information.address
-                Country.textContent = information.country
+                fetch('/view-profile')
+                .then(res => {
+                    return res.json()
+                })
+                .then(data => {
+                    let Fullname = data["fullname"]
+                    let Email = data["email"]
+                    let Phone_number = data["phone_number"]
+                    let Date_of_birth = data["date_of_birth"]
+                    let Gender = data["gender"]
+                    let Address = data["address"]
+                    let Country = data["country"]
+                    console.log(data)
+                    document.getElementById("Fullname").innerHTML = Fullname
+                    document.getElementById("Email").innerHTML = Email
+                    document.getElementById("Phone_number").innerHTML = Phone_number
+                    document.getElementById("Date_of_birth").innerHTML = Date_of_birth
+                    document.getElementById("Gender").innerHTML = Gender
+                    document.getElementById("Address").innerHTML = Address
+                    document.getElementById("Country").innerHTML = Country
+                })
             </script>
         </div>
     </div>  

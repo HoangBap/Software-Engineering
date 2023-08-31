@@ -3,12 +3,13 @@ import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import cookieParser from 'cookie-parser'
-import session from 'express-session'
+import bodyParser from 'body-parser'
 
 //Import local files
 import userRouter from './routes/authentication.js'
 import homepageRouter from './routes/homepage.js'
 import profileRouter from './routes/profileModification.js'
+import healthRecRouter from './routes/userHealthRecord.js'
 
 const app = express();
 
@@ -21,7 +22,16 @@ app.use(express.static(path.join(__dirname, 'publics')))
 app.set('view engine', 'ejs')
 
 //Indicate to use the signed cookies
-app.use(cookieParser())
+app.use(cookieParser(process.env.SECRET_KEY))
+
+// parse various different custom JSON types as JSON
+app.use(bodyParser.json({ type: 'application/json' }))
+
+// parse some custom thing into a Buffer
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+
+// parse an HTML body into a string
+app.use(bodyParser.text({ type: 'text/html' }))
 
 //___________________________________________
 app.use(express.urlencoded({extended: true}))
@@ -30,6 +40,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(userRouter)
 app.use(homepageRouter)
 app.use(profileRouter)
+app.use(healthRecRouter)
 
 //Creating port
 const PORT = process.env.PORT || 4111;

@@ -1,7 +1,7 @@
 const controller = {}
 
 controller.homePageView = async(req, res) => {
-    res.render("homepage")
+    res.render("landing_page")
     return 
 }
 

@@ -66,7 +66,84 @@ header{
 #FitUS{
     padding-top: 300px;
     font-size: 70px;
-    border-style: dotted;
     padding-left: 300px;
     padding-right: 300px;
 }
+
+#tracking_health{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+#track_1{
+    width:100%;
+    height: 400px;
+    background: url(../picture/track_1.png) no-repeat center;
+    background-size: contain;
+}
+
+#track_2{
+    width:100%;
+    height: 400px;
+    background: url(../picture/track_2.png) no-repeat center;
+    margin-top: -240px;
+    margin-left:200px;
+    background-size: contain ;
+}
+
+#pic_2{
+    background-image: url('../picture/eat.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100vh;
+}
+
+#Portion{
+    padding-top: 350px;
+    font-size: 50px;
+    padding-left: 300px;
+    padding-right: 300px;
+}
+
+#content_por{
+    font-size: 20px;
+    color: white;
+}
+
+#info_1{
+    width:100%;
+    height: 400px;
+    background: url(../picture/info_1.png) no-repeat center;
+    background-size: contain;
+}
+
+#info_2{
+    width:100%;
+    height: 400px;
+    background: url(../picture/info_2.png) no-repeat center;
+    margin-top: -280px;
+    margin-left:100px;
+    background-size: contain ;
+}
+
+#icon_apps{
+    margin-left: 500px;
+    margin-right: 500px;
+}
+
+#icon{
+    border: none;
+    outline: none;
+}
+
+footer{
+    background-color: #0B0D17;
+    height:400px
+}
+
+#contact_us{
+    padding-top: 20px;
+}
+

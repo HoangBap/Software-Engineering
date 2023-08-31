@@ -14,8 +14,9 @@ export async function getUserHealthRecord(user_ID) {
     const [rows] = await pool.query(`
         SELECT record_ID as recordID, user_ID as userID, height_value, weight_value, blood_sugar, heart_rate, heart_pressure_systolic, heart_pressure_diastolic, DATE_FORMAT(submit_date, '%Y-%m-%d') as submit_date
         FROM UserHealthRecord
-        WHERE user_ID = ?
-    `, [user_ID]);
+        WHERE user_ID = ${user_ID}
+        ORDER BY submit_date DESC
+    `);
 
     return rows;
 }

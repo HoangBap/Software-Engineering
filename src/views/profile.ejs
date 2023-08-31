@@ -1,5 +1,19 @@
-<%- include('layout.ejs'); %>
-<link rel="stylesheet" href="styles/profile.css">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    <title>HealthFitUS</title>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" ></script>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="styles/profile.css">
 </head>
 <!-- <header></header> -->
 <header>
@@ -48,8 +62,8 @@
                 <div class="row ps-5 pe-5">
                     <div class="col ms-5">
                         <div class="row mb-3" style="font-size:large">
-                            <b class="col-sm-5">Username: </b>
-                            <b class="col-sm-7" id="Username"></b>
+                            <b class="col-sm-5">Fullname: </b>
+                            <b class="col-sm-7" id="Fullname"></b>
                         </div>
                         <div class="row mb-3" style="font-size:large">
                             <b class="col-sm-5">Email: </b>
@@ -88,23 +102,27 @@
         </div>
             <script>
                 // Using template literals for string interpolation
-                // let Username = document.querySelector('#Username')
-                // let Email = document.querySelector('#Email')
-                // let Phone_number = document.querySelector('#Phone_number')
-                // let Date_of_birth = document.querySelector('#Date_of_birth')
-                // let Gender = document.querySelector('#Gender')
-                // let Address = document.querySelector('#Address')
-                // let Country = document.querySelector('#Country')
-                // fetch('/profile')
-                //     .then(function(res) {
-                //         return res.json()
-                //     })
-                //     .then(function(data) {
-                //         console.log(data)
-                //     })
-                //     .catch(function(err) {
-                //         console.log("error");
-                //     })
+                fetch('/view-profile')
+                .then(res => {
+                    return res.json()
+                })
+                .then(data => {
+                    let Fullname = data["fullname"]
+                    let Email = data["email"]
+                    let Phone_number = data["phone_number"]
+                    let Date_of_birth = data["date_of_birth"]
+                    let Gender = data["gender"]
+                    let Address = data["address"]
+                    let Country = data["country"]
+                    console.log(data)
+                    document.getElementById("Fullname").innerHTML = Fullname
+                    document.getElementById("Email").innerHTML = Email
+                    document.getElementById("Phone_number").innerHTML = Phone_number
+                    document.getElementById("Date_of_birth").innerHTML = Date_of_birth
+                    document.getElementById("Gender").innerHTML = Gender
+                    document.getElementById("Address").innerHTML = Address
+                    document.getElementById("Country").innerHTML = Country
+                })
             </script>
         </div>
     </div>  

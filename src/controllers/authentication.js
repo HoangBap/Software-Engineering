@@ -61,7 +61,7 @@ controller.register = async (req, res, next) => {
         //The email is already existed in the database!
         if (cur_user) {
             console.log("The email is already existed in the database!")
-            res.redirect("login")
+            res.redirect("register")
             return 
 
         } else {
@@ -83,39 +83,11 @@ controller.register = async (req, res, next) => {
 }
 
 controller.loginView = (req, res) => {
-    if (!req.signedCookies.userID || !req.cookies.email){
-        res.render('login')
-        return 
-    }
-
-    const isRealUser = getUserByID(req.signedCookies.userID);
-    if (isRealUser) {
-        res.redirect('/landing_page')
-    }
-    
-    else {
-        res.clearCookie('userID')
-        res.clearCookie('email')
-        res.render('login')
-    }
+    res.render('login')
 }
 
 controller.registerView = (req, res) => {
-    if (!req.signedCookies.userID || !req.cookies.email){
-        res.render('register')
-        return 
-    }
-
-    const isRealUser = getUserByID(req.signedCookies.userID);
-    if (isRealUser) {
-        res.redirect('/landing_page')
-    }
-    
-    else {
-        res.clearCookies('userID')
-        res.clearCookies('email')
-        res.redirect('register')
-    }
+    res.render('register')
 }
 
 controller.logoutView = (req, res) => {

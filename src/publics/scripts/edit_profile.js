@@ -1,7 +1,6 @@
 let date = document.getElementById("Date_of_birth")
 let button = document.querySelector('.button')
 
-
 let currentDay = new Date()
 // let num_year = 
 

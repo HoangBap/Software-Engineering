@@ -42,48 +42,32 @@
             </div>
         </div>
         <div>
-            <form method="post" action="/editprofile">
+            <form method="post" action="/edit_profile">
                 <div class="row">
                     <div class="col px-5">
                         <div class="row">
                             <p>Fullname: </p>
                         </div>
                         <div class="row pe-5 ps-2 was-validated">
-                            <input type="text" id="Fullname" class="form-control" name="Fullname" required>
+                            <input type="text" id="Fullname" class="form-control" name="Fullname" value="<%= locals.fullname %>">
                         </div>
                         <div class="row mt-3">
                             <p>Email: </p>
                         </div>
                         <div class="row pe-5 ps-2" >
-                            <input type="text" id="Email" class="form-control" name="Email"  readonly>
+                            <input type="text" id="Email" class="form-control" name="Email" value="<%= locals.email %>" readonly>
                         </div>
-                        <script>
-                            const information = {
-                                username: "Le Xuan Dat",
-                                email: "datvippromax@gmail.com",
-                                phone_number: "09000029200",
-                                date_of_birth: "12-23-2003",
-                                gender: "Male",
-                                address: "123-2323-2323",
-                                country: "O duoi que",
-                            };
-                            let email_data = information.email
-                            // Using template literals for string interpolation
-                            let Email = document.querySelector('#Email')
-                            Email.setAttribute("value", email_data)
-                        </script>
-                            
                         <div class="row mt-3">
                             <p>Phone number: </p>
                         </div>
                         <div class="row pe-5 ps-2 was-validated">
-                            <input type="text" id="Phone number" class="form-control" name="Phone_number" required>
+                            <input type="text" id="Phone number" class="form-control" name="Phone_number"  value="<%= locals.phone_number %>" required>
                         </div>
                         <div class="row mt-3">
                             <p>Date of birth: </p>
                         </div>
                         <div class="row pe-5 ps-2">
-                            <input type="date" id="Date_of_birth" class="form-control is-invalid" name="Date_of_birth" required autofocus>
+                            <input type="date" id="Date_of_birth" class="form-control is-invalid" name="Date_of_birth" value="<%= locals.date_of_birth %>" required autofocus>
                         </div>
                     </div>
                     <div class="col">
@@ -91,7 +75,7 @@
                             <p>Gender: </p>
                         </div>
                         <div class="row pe-5 ps-2 was-validated">
-                            <div class="form-check form-check-inline col" id="Gender">
+                            <div class="form-check form-check-inline col" id="Gender" value="<% locals.gender %>">
                                 <input class="form-check-input is-invalid" type="radio" name="Gender" id="male" value="Male" required>
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
@@ -108,13 +92,13 @@
                             <p>Address: </p>
                         </div>
                         <div class="row pe-5 ps-2 was-validated">
-                            <input type="text" id="Address" class="form-control" name="Address" required>
+                            <input type="text" id="Address" class="form-control" name="Address" value="<%= locals.address %>" required>
                         </div>
                         <div class="row mt-3">
                             <p>Country: </p>
                         </div>
                         <div class="row pe-5 ps-2 was-validated">
-                            <input type="text" id="Country" class="form-control" name="Country" required>
+                            <input type="text" id="Country" class="form-control" name="Country" value="<%= locals.country %>">
                         </div>
                     </div>
                 </div>
@@ -141,6 +125,6 @@
         </div>
         
     </div>
-    <script type="text/javascript" src="./edit_profile.js"></script>
+    <script type="text/javascript" src="scripts/edit_profile.js"></script>
 </body>
 </html>

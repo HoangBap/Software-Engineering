@@ -57,7 +57,7 @@ healthRecordController.createUserHealthRecord = async (req, res) => {
     res.json({ flag: 1 }); // successfully nhó
 };
 
-// Xem health rec
+// Xem health rec (trả về hết cả list)
 healthRecordController.viewHealthRecord = async (req, res) => {
     const userID = req.signedCookies.userID;
 
@@ -69,6 +69,25 @@ healthRecordController.viewHealthRecord = async (req, res) => {
     const healthRecords = await getUserHealthRecord(userID);
 
     res.json(healthRecords)
+};
+
+// Trả về 7 rec gần nhất để monitoring
+healthRecordController.viewHealthMonitor = async (req, res) => {
+    const userID = req.signedCookies.userID;
+
+    if (!userID) {
+        console.log("User not logged in!");
+        return res.redirect("/login");
+    }
+
+    const healthMonitor = await getUserHealthRecord(userID);
+
+    if (healthMonitor.length > 7){
+        res.json(healthMonitor.slice(0, 7)) // nhiều hơn 7 rec thì chỉ lấy 7 cái gần nhất
+        return
+    }
+
+    res.json(healthMonitor) // nếu ít hơn 7 rec thì trả về hết 
 };
 
 

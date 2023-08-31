@@ -10,4 +10,6 @@ router.post('/edit-record', healthRecordController.editHealthRecord)
 router.post('/delete-record', healthRecordController.deleteHealthRecord)
 router.post('/create-record', healthRecordController.createUserHealthRecord)
 
+router.get('/health-monitor', healthRecordController.viewHealthMonitor)
+
 export default router;

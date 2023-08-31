@@ -1,6 +1,5 @@
 import {getUser, createUser} from '../models/user.js'
 import {createUserProfile} from '../models/userProfile.js'
-import bcrypt from 'bcrypt'
 
 const controller = {}
 

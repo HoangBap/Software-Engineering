@@ -24,5 +24,10 @@ router
 //     .get(controller.logout)
 //     .post(controller.logout)
 
+// router
+//     .route('/forgot-password')
+//     .get(controller.forgotPasswordView)
+//     .post(controller.forgotPassword);
+
 export default router;
 

@@ -32,3 +32,20 @@ CREATE TABLE UserHealthRecord (
     CONSTRAINT FK_userIDhealth_ID FOREIGN KEY (user_ID) references User(ID)
 );
 
+Create TABLE Food (
+    ID INT auto_increment,
+    CategoryName TEXT NOT NULL,
+    PRIMARY KEY (ID)
+)
+
+CREATE TABLE FoodRecipe (
+    ID INT auto_increment,
+    CategoryID INT NOT NULL,
+    Author TEXT,
+    Description TEXT,
+    Ingredients TEXT,
+    Instructions TEXT,
+    PRIMARY KEY(RecipeID, CategoryID),
+    CONSTRAINT FK_CategoryID_ID FOREIGN KEY(CategoryID) references Food(ID)
+)
+

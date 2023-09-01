@@ -8,7 +8,7 @@ export async function checkUserOnline(req, res, next) {
 
     const isRealUser = await getUserByID(req.signedCookies.userID);
     if (isRealUser) {
-        res.redirect('/landing_page')
+        res.redirect('/mainpage')
         return
     }
     

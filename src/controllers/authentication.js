@@ -129,4 +129,19 @@ controller.logout = (req, res) => {
     res.redirect('login')
 }
 
+controller.forgotPassView = (req, res) =>{
+    console.log("Nothing here to see, forgot password function will be out soon")
+}
+
+controller.confirmOTP = async (req, res) =>{
+    const {email, otp } = req.params
+    const response = await fetch(`https://api.airtable.com/v0/appLJelkbGDaNk8Me/OTP?maxRecords=1&view=Active%20OTP&filter=AND(Mail='${email}', OTP='${otp}')`)
+    const otps = await response.json();
+    if (otps.length) {
+        res.json({message: "OTP OK"})
+    }else {
+        res.json({message: "OTP Not OK ditme"})
+    }
+}
+
 export default controller

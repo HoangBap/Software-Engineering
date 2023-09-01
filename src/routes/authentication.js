@@ -18,10 +18,18 @@ router
     .get(controller.logoutView)
     .post(controller.logout)
 
+router
+    .route('/forgot-password')
+    .get(controller.forgotPassView)
+
+router
+    .route('/confirm-otp')
+    .get(controller.confirmOTP)
+
+
 // router
 //     .route('/logout')
 //     .get(controller.logout)
 //     .post(controller.logout)
 
 export default router;
-

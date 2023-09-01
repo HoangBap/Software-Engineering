@@ -1,7 +1,6 @@
 import { getUserByID } from "../models/user.js"
 
 export async function checkValid(req, res, next) {
-    console.log("Running this function")
     if (!req.signedCookies.userID || !req.cookies.email){
         res.clearCookie('userID')
         res.clearCookie('email')

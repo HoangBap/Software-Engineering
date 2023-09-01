@@ -8,7 +8,6 @@ export async function createUserHealthRecord(user_ID, height, weight, blood_suga
     `, [user_ID, height, weight, blood_sugar, heart_rate, systolic_pressure, diastolic_pressure, submit_date]);
 }
 
-
 // Lấy health rec dựa vào ID user (stt trong database)
 export async function getUserHealthRecord(user_ID) {
     const [rows] = await pool.query(`
@@ -53,10 +52,28 @@ export async function getLastSubmitDate(user_ID){
     return new Date('1990-10-26');
 }
 
-// export async function separateDate(Date){
-//     const result = Date.split("T")
-//     return result[0]
-// }
+//Return total health records according to the current month
+export async function totalHealthRecordOneMonth(user_ID, currentMonth){
+    const [result] = await pool.query(`
+        SELECT COUNT(record_ID) as total_records 
+        FROM userhealthrecord
+        WHERE user_ID = ${user_ID} AND MONTH(submit_date) = ?
+    `, [currentMonth])
+
+    return result[0]
+}
+
+//Return latest height and weight of a user
+export async function returnHeightAndWeight(user_ID) {
+    const [result] = await pool.query(`
+        SELECT height_value as height, weight_value as weight FROM userhealthrecord
+        WHERE user_ID = ${user_ID}
+        ORDER BY submit_date DESC
+        LIMIT 1
+    `)
+
+    return result[0]
+}
 
 
 

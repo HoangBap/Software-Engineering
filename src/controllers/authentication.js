@@ -31,7 +31,7 @@ controller.login = async (req, res) => {
         res.cookie(`userID`, cur_user.ID, {signed: true})
         res.cookie(`email`, cur_user.email)
 
-        res.redirect("landing_page")
+        res.redirect("mainpage")
         return
         
     } else { //Failed
@@ -76,7 +76,7 @@ controller.register = async (req, res, next) => {
             res.cookie(`userID`, userID, {signed: true})
             res.cookie(`email`, email)
 
-            res.redirect("/landing_page")
+            res.redirect("/mainpage")
         }
     }
     return 
@@ -90,13 +90,9 @@ controller.registerView = (req, res) => {
     res.render('register')
 }
 
-controller.logoutView = (req, res) => {
-    console.log("Nothing here to see, logout function will be out soon")
-}
-
 controller.logout = (req, res) => {
-    res.clearCookies('userID')
-    res.clearCookies('email')
+    res.clearCookie('userID')
+    res.clearCookie('email')
 
     res.redirect('login')
 }

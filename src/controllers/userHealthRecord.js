@@ -1,9 +1,13 @@
-import { createUserHealthRecord, getUserHealthRecord, editUserHealthRecord, deleteUserHealthRecord } from '../models/healthRecord.js';
+import { createUserHealthRecord, getUserHealthRecord,
+    editUserHealthRecord, deleteUserHealthRecord, 
+    totalHealthRecordOneMonth, returnHeightAndWeight } from '../models/healthRecord.js';
+
 import { getUser, getUserByID } from '../models/user.js';
 import { getLastSubmitDate } from '../models/healthRecord.js';
 
 const healthRecordController = {};
 
+//View Health Record Page
 healthRecordController.healthRecordPanel = (req, res) => {
     if(!req.signedCookies.userID || !req.cookies.email) {
         res.redirect('login')
@@ -21,6 +25,7 @@ healthRecordController.healthRecordPanel = (req, res) => {
     }
 }
 
+//Creating a new health record
 healthRecordController.createUserHealthRecord = async (req, res) => {
     const {height_value, weight_value, blood_sugar, heart_rate, heart_pressure_systolic, heart_pressure_diastolic} = req.body;
     const userID = req.signedCookies.userID
@@ -57,17 +62,25 @@ healthRecordController.createUserHealthRecord = async (req, res) => {
     res.json({ flag: 1 }); // successfully nhó
 };
 
+//Return a total number of health records corresponding to the given month
+healthRecordController.totalHealthRecordOneMonth = async(req, res) => {
+    const userID = req.signedCookies.userID
+    //If for some reasons, userID is invalid
+    if (!userID) {
+        return res.redirect("/login")
+    }
+    
+    const today = new Date()
+    const current_month = today.getMonth() + 1
+    const total = await totalHealthRecordOneMonth(userID, current_month)
+
+    res.json(total)
+}
+
 // Xem health rec (trả về hết cả list)
 healthRecordController.viewHealthRecord = async (req, res) => {
     const userID = req.signedCookies.userID;
-
-    if (!userID) {
-        console.log("User not logged in!");
-        return res.redirect("/login");
-    }
-
     const healthRecords = await getUserHealthRecord(userID);
-
     res.json(healthRecords)
 };
 
@@ -90,7 +103,7 @@ healthRecordController.viewHealthMonitor = async (req, res) => {
     res.json(healthMonitor) // nếu ít hơn 7 rec thì trả về hết 
 };
 
-
+//Edit a health record
 healthRecordController.editHealthRecord = async (req, res) => {
     const {recordID, height_value, weight_value, blood_sugar, heart_rate, heart_pressure_systolic, heart_pressure_diastolic} = req.body;
     const userID = req.signedCookies.userID
@@ -114,7 +127,7 @@ healthRecordController.editHealthRecord = async (req, res) => {
     // res.redirect('/homepage'); // Chuyển hướng người dùng đến trang hồ sơ
 };
 
-// Delete
+// Delete a health record
 healthRecordController.deleteHealthRecord = async (req, res) => {
     const { recordID } = req.body;
     const userID = req.signedCookies.userID
@@ -135,5 +148,12 @@ healthRecordController.deleteHealthRecord = async (req, res) => {
     res.json({ flag: 1 });
 
 };
+
+healthRecordController.returnLatestHeightAndWeight = async(req, res) => {
+    const userID = req.signedCookies.userID
+
+    const result = await returnHeightAndWeight(userID)
+    res.json(result)
+}
 
 export default healthRecordController;

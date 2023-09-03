@@ -10,6 +10,7 @@ import userRouter from './routes/authentication.js'
 import homepageRouter from './routes/homepage.js'
 import profileRouter from './routes/profileModification.js'
 import healthRecRouter from './routes/userHealthRecord.js'
+import recipeRouter from './routes/recipe.js'
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use(userRouter)
 app.use(homepageRouter)
 app.use(profileRouter)
 app.use(healthRecRouter)
+app.use(recipeRouter)
 
 //Creating port
 const PORT = process.env.PORT || 4111;

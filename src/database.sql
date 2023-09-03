@@ -60,7 +60,7 @@ VALUES (
     (SELECT ID FROM Food WHERE CategoryName = 'BodyBuilding'),
     'Grilled Chicken with Sweet Potato and Asparagus',
     'Gordon Ramsay',
-    'Indulge in a symphony of flavors with our Grilled Chicken...',
+    'Indulge in a symphony of flavors with our Grilled Chicken, perfectly complemented by the earthy sweetness of roasted Sweet Potatoes and the crisp freshness of Asparagus. A wholesome delight thats as wholesome as it is delicious!',
     '1 chicken breast (about 6 oz), Seasonings like garlic powder, paprika, salt, and pepper, 1 medium sweet potato, 1 cup asparagus',
     'Grill the chicken breast with the chosen seasonings at 200°C (392°F) for about 6-8 minutes per side or until the internal temperature reaches 165°F (74°C). Wash and pierce the sweet potato with a fork. Bake at 200°C (392°F) for around 45-60 minutes or microwave for about 5-7 minutes until tender. Trim the tough ends of the asparagus. Grill or steam the asparagus for about 4-5 minutes until tender but still crisp.',
     './images/recipes/BB_chicken.png'
@@ -71,7 +71,7 @@ VALUES (
     (SELECT ID FROM Food WHERE CategoryName = 'BodyBuilding'),
     'Turkey and Quinoa Stuffed Bell Peppers',
     'Gordon Ramsay',
-    'Elevate your dinner game with our mouthwatering Turkey and Quinoa Stuffed Bell Peppers...',
+    'Tender bell peppers stuffed with a savory blend of lean turkey and protein-packed quinoa, baked to perfection, and topped with a luscious tomato sauce. A wholesome and satisfying meal thats as beautiful as it is flavorful.',
     '1 large bell pepper, 4 oz ground turkey, 1/4 cup cooked quinoa, 1/4 cup cooked black beans, Diced tomatoes, onions, and seasonings as desired',
     'Cut off the top of the bell pepper and remove seeds and membranes. Cook ground turkey in a skillet over medium heat until browned. Add diced tomatoes, onions, black beans, and desired seasonings. Stuff the bell pepper with the turkey, quinoa, and black bean mixture. Bake stuffed pepper at 175°C (350°F) for about 25-30 minutes until the pepper is tender.',
     './images/recipes/BB_turkey.png'
@@ -82,7 +82,7 @@ VALUES (
     (SELECT ID FROM Food WHERE CategoryName = 'BodyBuilding'),
     'Tofu Stir-Fry with Brown Rice',
     'Gordon Ramsay',
-    'Experience a burst of Asian-inspired flavors with our Tofu Stir-Fry served over nutty Brown Rice...',
+    'Delight in the harmony of crisp veggies, marinated tofu, and a savory stir-fry sauce that will tantalize your taste buds while keeping your meal light and nutritious. ',
     '6 oz firm tofu, 1 cup stir-fry vegetables (such as broccoli, bell peppers, carrots), Cooked brown rice',
     'Press tofu to remove excess moisture and cut into cubes. Heat a pan over medium-high heat and add a little oil. Stir-fry tofu until golden and slightly crispy. Add stir-fry vegetables and cook until tender-crisp. Add low-sodium soy sauce or stir-fry sauce. Serve tofu and vegetable stir-fry over cooked brown rice.',
     './images/recipes/tofu.png'
@@ -93,7 +93,7 @@ VALUES (
     (SELECT ID FROM Food WHERE CategoryName = 'BodyBuilding'),
     'Whole Wheat Pasta with Lean Beef Marinara',
     'Gordon Ramsay',
-    'Savor the goodness of our Whole Wheat Pasta paired with a hearty Lean Beef Marinara sauce...',
+    'A wholesome twist on a classic Italian favorite, combining the rich flavors of lean ground beef, aromatic herbs, and whole wheat pasta for a guilt-free indulgence thats both comforting and nourishing. Buon appetito!',
     '4 oz lean ground beef, 1/4 cup diced tomatoes, 1/4 cup sautéed onions, Whole wheat pasta',
     'Cook lean ground beef in a skillet over medium heat until browned. Add diced tomatoes and sautéed onions. Cook whole wheat pasta according to package instructions. Mix cooked pasta with beef marinara sauce.',
     './images/recipes/pasta.png'
@@ -104,7 +104,7 @@ VALUES (
     (SELECT ID FROM Food WHERE CategoryName = 'BodyBuilding'),
     'Omelette with Spinach, Mushrooms, and Cheese',
     'Gordon Ramsay',
-    'Start your day on a flavorful note with our delectable Omelette featuring a medley of Spinach, Mushrooms, and Cheese...',
+    'This breakfast masterpiece combines fluffy eggs with sautéed spinach and mushrooms, all generously folded around a gooey, melted cheese center. Its a protein-packed, veggie-infused delight that will have you eager to rise and shine each morning!',
     '3 eggs, 1 cup sautéed spinach, 1/2 cup sliced mushrooms, 1/4 cup shredded cheese (such as mozzarella or cheddar)',
     'Sauté sliced mushrooms until tender, then add fresh spinach and sauté until wilted. Beat three eggs in a bowl until well combined. Pour beaten eggs into a non-stick skillet over the sautéed vegetables. Cook until edges set, then sprinkle shredded cheese over half of the omelette. Fold the omelette in half, covering the cheese. Slide onto a plate and enjoy.',
     './images/recipes/BB_omelette.png'

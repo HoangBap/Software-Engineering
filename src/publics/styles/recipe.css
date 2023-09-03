@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #EEF6F9;
+}
+
+/*===== NAVBAR =====*/
+
+.navbar-wrap{
+    background-color: #4D77FF;
+}
+
+.navbar-brand{
+    font-size: 2rem;
+    font-weight: 800;
+    color: #FFFFFF;
+}
+
+.navbar-brand:hover{
+    color:#052B40;
+}
+
+.nav-item-space{
+    margin: 0 10px;
+}
+
+.nav-link{
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.nav-link:hover{
+    color:#052B40;
+}
+
+.log-in-btn{
+    margin-left: 50px;
+    padding: 5px 20px;
+    border: 0;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.circle-btn{
+    height: 50px;
+    width: 50px;
+    border: 0;
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: #FFFFFF;
+}
+
+.dropdown-item{
+    font-size: 1rem;
+    color: #052B40;
+    font-weight: 600;
+}
+
+.section-wrap{
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0px 0px 30px rgba(5, 43, 64, 0.1);
+}
+
+.recipe-pic{
+    object-fit: cover;
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+}
+
+.main h1{
+    font-size: 64px;
+    font-weight: 700;
+    color: #052B40;
+}
+
+.main h2{
+    font-size: 40px;
+    font-weight: 700;
+    color: #052B40;
+}
+
+.main h3{
+    font-size: 18px;
+    font-weight: 400;
+    color: #052B40;
+}
+
+.main p{
+    font-size: 16px;
+    font-weight: 400;
+    color: #052B40;
+}
+
+.main ul{
+    font-size: 16px;
+    font-weight: 400;
+    color: #052B40;
+}

@@ -11,8 +11,8 @@
             "driver": "MySQL",
             "name": "localhost",
             "database": "account_management",
-            "username": "root",
-            "password": "Aimeefmst281."
+            "username": "sqluser",
+            "password": "password"
         }
     ]
 }

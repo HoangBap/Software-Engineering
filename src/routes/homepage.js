@@ -14,13 +14,9 @@ router
 
 router
     .route('/health_monitoring')
-    .get(checkValid, (req, res) => {
-        res.render('health_monitoring')
-    })
+    .get(checkValid, controller.viewHealthMonitor)
 
 router
     .route('/bmi')
-    .get(checkValid, (req, res) => {
-        res.render('bmi')
-    })
+    .get(checkValid, controller.viewBMI) 
 export default router

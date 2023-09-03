@@ -10,4 +10,13 @@ controller.mainpageView = async(req, res) => {
     return
 }
 
+controller.viewBMI = async (req, res) => {
+    res.render('bmi')
+    return 
+}
+
+controller.viewHealthMonitor = async (req, res) => {
+    res.render('health_monitoring')
+}
+
 export default controller

@@ -10,6 +10,6 @@ router.get('/view-profile', profile_controller.sendprofile)
 router
     .route('/edit_profile')
     .get(checkValid, profile_controller.getprofile)
-    .post(profile_controller.updateprofile)
+    .post(checkValid, profile_controller.updateprofile)
 
 export default router

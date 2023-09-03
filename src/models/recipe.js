@@ -11,3 +11,17 @@ export async function getRecipeList() {
 
     return rows;
 }
+
+export async function getRecipe(RecipeID) {
+    const [result] = await pool.query(`
+        SELECT RecipeName, Descriptions, Ingredients, Instructions, Path_img 
+        FROM FoodRecipe
+        WHERE FoodRecipe.RecipeID = ?`, [RecipeID])
+
+    //If undefined
+    if(result.length == 0) {
+        return result
+    }
+
+    return result[0]
+}

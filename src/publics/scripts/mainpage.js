@@ -6,6 +6,8 @@ const request2 = fetch('/get-bmi').then(res => {return res.json();});
 
 Promise.all([request1, request2])
 .then(([data1, data2]) => {
+    console.log(data1)
+    console.log(data2)
     total_records = data1;
     height_weight = data2;
     displayData(height_weight, total_records);

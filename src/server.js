@@ -11,15 +11,17 @@ import homepageRouter from './routes/homepage.js'
 import profileRouter from './routes/profileModification.js'
 import healthRecRouter from './routes/userHealthRecord.js'
 import recipeRouter from './routes/recipe.js'
+import exp from 'constants'
 
 const app = express();
 
 //Render file .ejs with css applied 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, 'publics')))
+app.use(express.static(path.join(__dirname, '/publics')))
 
 //Setting up the view engine
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 //Indicate to use the signed cookies
@@ -44,8 +46,7 @@ app.use(profileRouter)
 app.use(healthRecRouter)
 app.use(recipeRouter)
 
-//If path does not exist
-app.all('*', (req, res) => {
+app.use('*', (req, res) => {
     res.status(404).render('404')
 })
 

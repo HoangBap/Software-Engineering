@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Error 😔</title>
+    <title>Recipe - FitUS</title>
     <!-- bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <!-- custom CSS -->
-    <link href="/styles/404.css" rel="stylesheet">
+    <link href="/styles/recipe.css" rel="stylesheet">
 
     <!-- icon -->
     <script src="https://kit.fontawesome.com/9dfff9b2c9.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+
 </head>
 <body>
     <!-- header/nav bar -->
@@ -59,15 +60,31 @@
         </nav>
     </header>
 
+    <!-- get data and change the contents inside main -->
     <section class="main">
-        <div class="d-flex flex-column align-items-center justify-content-center content-wrap">
-            <img src="/images/404.svg" alt="404Error" width="500px">
-            <h1>Wait!</h1>
-            <h2>You're not supposed to be here</h2>
-            <h5>Let's go back to our <a href="/mainpage">homepage</a></h5>
+        <div class="section-wrap mx-5 my-4">
+            <img src="<%= locals.Path_img %>" alt="recipe" class="recipe-pic mb-4">
+            <div>
+                <h1><%= locals.RecipeName %></h1>
+            </div>
+            <br>
+            <div>
+                <h2>Desciption</h2>
+                <p><%= locals.Descriptions %></p>                    
+            </div>
+            <br>
+            <div>
+                <h2>Ingredients</h2>
+                <p><%= locals.Ingredients %></p>    
+            </div>
+            <br>
+            <div>
+                <h2>Instructions</h2>
+                <p><%= locals.Instructions %></p>
+            </div>
         </div>
     </section>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

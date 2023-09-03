@@ -9,7 +9,7 @@
     <link href="https://https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../publics/styles/edit_profile.css">
     <script src="https://kit.fontawesome.com/9dfff9b2c9.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="./images/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
 
 <link rel="stylesheet" href="styles/edit_profile.css">
 </head>
@@ -96,7 +96,7 @@
                             <p>Date of birth: </p>
                         </div>
                         <div class="row pe-5 ps-2">
-                            <input type="date" id="Date_of_birth" class="form-control is-invalid" name="Date_of_birth" value="date" required autofocus>
+                            <input type="date" id="Date_of_birth" class="form-control is-invalid" name="Date_of_birth" value="<%= locals.date_of_birth %>" required autofocus>
                         </div>
                     </div>
                     <div class="col">
@@ -104,7 +104,7 @@
                             <p>Gender: </p>
                         </div>
                         <div class="row pe-5 ps-2 was-validated">
-                            <div class="form-check form-check-inline col" id="Gender" value="<% locals.gender %>">
+                            <div class="form-check form-check-inline col" id="Gender" value="<%= locals.gender %>">
                                 <input class="form-check-input is-invalid" type="radio" name="Gender" id="male" value="Male" required>
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
@@ -121,13 +121,13 @@
                             <p>Address: </p>
                         </div>
                         <div class="row pe-5 ps-2 was-validated">
-                            <input type="text" id="Address" class="form-control" name="Address" value="<%= locals.address %>" required>
+                            <input type="text" id="Address" class="form-control" name="Address" value="<%= locals.home_address %>" required>
                         </div>
                         <div class="row mt-3">
                             <p>Country: </p>
                         </div>
                         <div class="row pe-5 ps-2">
-                            <select class="form-select" id="Country" name="Country">
+                            <select class="form-select" id="Country" name="Country" value="<%= locals.country %>">
                                 <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Albania">Albania</option>

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Error 😔</title>
+    <title>Food Portion - FitUS</title>
     <!-- bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <!-- custom CSS -->
-    <link href="/styles/404.css" rel="stylesheet">
+    <link href="./styles/foodportion.css" rel="stylesheet">
 
     <!-- icon -->
     <script src="https://kit.fontawesome.com/9dfff9b2c9.js" crossorigin="anonymous"></script>
@@ -60,14 +60,46 @@
     </header>
 
     <section class="main">
-        <div class="d-flex flex-column align-items-center justify-content-center content-wrap">
-            <img src="/images/404.svg" alt="404Error" width="500px">
-            <h1>Wait!</h1>
-            <h2>You're not supposed to be here</h2>
-            <h5>Let's go back to our <a href="/mainpage">homepage</a></h5>
+        <div class="text-bg p-3 mb-4">
+            <h1 class="text-center">Satisfy your health demands with our gourmet recipes</h1>
+        </div>
+        <div class="mb-4 mx-5 section-wrap">
+            <div class="d-flex flex-row align-items-center mb-4">
+                <h3 class="me-4">Category:</h3>
+                <div class="overflow-auto selection-wrap px-3">
+                    <div class="row flex-row flex-nowrap" id="categoryBtns">
+                        <!-- Add those with JS -->
+                        <button class="pill-btn">Meo</button>
+                        <button class="pill-btn">Meo</button>
+                        <button class="pill-btn">Meo</button>
+                        <button class="pill-btn">Meo</button>
+                        <button class="pill-btn">Meo</button>
+                        <button class="pill-btn">Meo</button>
+                        <button class="pill-btn">Meo</button>
+                        <button class="pill-btn">Meo</button>
+                    </div>
+                </div>
+            </div>
+            <div id="recipes">
+                <!-- recipe -->
+                <div class="recipe-wrap mb-3" onclick="window.location.href='/recipe/123'">
+                    <div class="d-flex flex-row">
+                        <img src="./images/foodportion.png" alt="pic" class="recipe-pic me-5">
+                        <div class="py-2">
+                            <h2>Recipe Name</h2>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident praesentium cum repudiandae adipisci ab, dignissimos minus nostrum porro! Aspernatur aperiam recusandae quidem, natus architecto dicta, nemo necessitatibus odio expedita molestiae, iste eveniet ducimus voluptate velit voluptates quia dignissimos in blanditiis ea illum? Inventore impedit nesciunt sunt quis deleniti quidem dolores.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center read-more">
+                        <h5 class="me-3">Read more</h5>
+                        <i class="fa-solid fa-chevron-right fa-s" style="color: #5c6b73; vertical-align: middle;"></i>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <script src="./scripts/foodportion.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -153,6 +153,7 @@ healthRecordController.returnLatestHeightAndWeight = async(req, res) => {
     const userID = req.signedCookies.userID
 
     const result = await returnHeightAndWeight(userID)
+
     res.json(result)
 }
 

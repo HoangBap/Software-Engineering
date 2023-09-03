@@ -2,6 +2,7 @@
 import express from 'express'
 import controller from '../controllers/authentication.js'
 import { checkUserOnline } from '../middleware/checkUser.js'
+import { checkValid } from '../middleware/checkValid.js'
 const router = express.Router()
 
 router 
@@ -16,12 +17,7 @@ router
 
 router
     .route('/logout')
-    .get(checkUserOnline, controller.logout)
-
-// router
-//     .route('/logout')
-//     .get(controller.logout)
-//     .post(controller.logout)
+    .get(controller.logout)
 
 export default router;
 

@@ -71,6 +71,11 @@ export async function returnHeightAndWeight(user_ID) {
         ORDER BY submit_date DESC
         LIMIT 1
     `)
+    
+    //If undefined
+    if(result.length == 0) {
+        return result
+    }
 
     return result[0]
 }

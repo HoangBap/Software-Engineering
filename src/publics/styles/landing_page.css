@@ -21,10 +21,12 @@ body {
     font-size: 2rem;
     font-weight: 800;
     color: #FFFFFF;
+    transition: all 0.4s;
 }
 
 .navbar-brand:hover{
     color:#052B40;
+    transition: all 0.4s;
 }
 
 .nav-item-space{
@@ -35,14 +37,15 @@ body {
     font-size: 0.825rem;
     font-weight: 600;
     color: #FFFFFF;
+    transition: all 0.4s;
 }
 
 .nav-link:hover{
     color:#052B40;
+    transition: all 0.4s;
 }
 
 .log-in-btn{
-    margin-left: 50px;
     padding: 5px 20px;
     border: 0;
     border-radius: 20px;
@@ -147,3 +150,17 @@ footer{
     padding-top: 20px;
 }
 
+.circle-btn{
+    height: 50px;
+    width: 50px;
+    border: 0;
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: #FFFFFF;
+}
+
+.dropdown-item{
+    font-size: 1rem;
+    color: #052B40;
+    font-weight: 600;
+}

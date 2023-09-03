@@ -42,6 +42,11 @@ app.use(homepageRouter)
 app.use(profileRouter)
 app.use(healthRecRouter)
 
+//If path does not exist
+app.all('*', (req, res) => {
+    res.status(404).render('404')
+})
+
 //Creating port
 const PORT = process.env.PORT || 4111;
 app.listen(PORT, console.log("Server has started at port " + PORT))

@@ -12,4 +12,15 @@ router
     .route('/mainpage')
     .get(checkValid, controller.mainpageView)
 
+router
+    .route('/health_monitoring')
+    .get(checkValid, (req, res) => {
+        res.render('health_monitoring')
+    })
+
+router
+    .route('/bmi')
+    .get(checkValid, (req, res) => {
+        res.render('bmi')
+    })
 export default router

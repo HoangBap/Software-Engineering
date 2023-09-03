@@ -11,6 +11,16 @@ body {
     background-color: #EEF6F9;
 }
 
+/* COLORS:
+    #4D77FF : primary color (blue)
+    #FFCC33 : secondary color (yellow)
+    #EEF6F9: background color
+    #FFFFFF : white color
+    #052B40 : header text color
+    #243640 : body text color
+    #5C6B73 : small gray text color
+*/
+
 /*===== NAVBAR =====*/
 
 .navbar-wrap{
@@ -46,27 +56,11 @@ body {
 }
 
 .log-in-btn{
+    margin-left: 50px;
     padding: 5px 20px;
     border: 0;
     border-radius: 20px;
     font-weight: 600;
-}
-
-#profile_info{
-    margin-top: 100px;
-    margin-left: 200px;
-    margin-right: 200px;
-    background-color: #DCE4EF;
-}
-
-header{
-    position: fixed;
-    top:0;
-    width: 100%;
-}
-
-#button{
-    margin-left: 750px;
 }
 
 .circle-btn{
@@ -82,4 +76,32 @@ header{
     font-size: 1rem;
     color: #052B40;
     font-weight: 600;
+}
+
+.content-wrap{
+    height: 85vh;
+}
+
+.main h1{
+    font-size: 70px;
+    font-weight: 700;
+    color: #052B40;
+}
+
+.main h2{
+    font-size: 38px;
+    font-weight: 600;
+    color: #052B40;
+}
+
+.main h5{
+    font-size: 16px;
+    font-weight: 400;
+    color: #5C6B73;
+}
+
+.main a{
+    font-size: 16px;
+    font-weight: 400;
+    color: #4D77FF;
 }

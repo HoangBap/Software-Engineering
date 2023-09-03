@@ -1,9 +1,10 @@
 import express from 'express';
 import healthRecordController from '../controllers/userHealthRecord.js';
+import { checkValid } from '../middleware/checkValid.js';
 
 const router = express.Router();
 
-router.get('/healthrecord', healthRecordController.healthRecordPanel)
+router.get('/healthrecord', checkValid, healthRecordController.healthRecordPanel)
 
 router.get('/view-records', healthRecordController.viewHealthRecord)
 router.get('/get-total-records', healthRecordController.totalHealthRecordOneMonth)

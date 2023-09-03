@@ -16,8 +16,7 @@ router
 
 router
     .route('/logout')
-    .get(controller.logoutView)
-    .post(controller.logout)
+    .get(checkUserOnline, controller.logout)
 
 // router
 //     .route('/logout')

@@ -12,7 +12,7 @@
             "name": "localhost",
             "database": "account_management",
             "username": "root",
-            "askForPassword": true
+            "password": "Aimeefmst281."
         }
     ],
     "liveServer.settings.port": 5501

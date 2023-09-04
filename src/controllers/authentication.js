@@ -146,10 +146,10 @@ controller.confirmEmail = async (req, res) => {
             body: JSON.stringify({'mail': email})
         })
         console.log(`OTP sent successfully to ${email}!`)
-        res.json({ flag: 1})
+        res.json({ flag: true})
     }
     else{
-        res.json({flag: 2})
+        res.json({flag: false})
     }
 }
 
@@ -165,9 +165,9 @@ controller.confirmOTP = async (req, res) =>{
     const otps = await response.json();
     //console.log(otps)
     if (otps.records.length) {
-        res.json({flag: 1})
+        res.json({flag: true})
     }else {
-        res.json({flag: 2})
+        res.json({flag: false})
     }
 }
 

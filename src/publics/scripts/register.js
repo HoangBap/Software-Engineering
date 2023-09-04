@@ -1,10 +1,13 @@
 let password_input = document.getElementById("password_1")
 let password_confirm = document.getElementById("password_2")
-let messege = document.getElementById("messege")
+let message = document.getElementById("message")
 let button = document.querySelector('.button')
 
 let length_input = document.getElementById("length")
 let number_input = document.getElementById("number")
+let Email = document.getElementById('email')
+
+const form = document.getElementById('form-register')
 
 // fetch('/register')
 // .then(res => {
@@ -17,7 +20,7 @@ let number_input = document.getElementById("number")
 
 
 password_input.onblur = function() {
-    messege.style.display = "none";
+    message.style.display = "none";
     // console.log(document.querySelectorAll('#login_to'))
 
     document.querySelectorAll('#login_to').forEach((query) => {
@@ -26,7 +29,7 @@ password_input.onblur = function() {
 }
 
 password_input.onfocus = function() {
-    messege.style.display = "block";
+    message.style.display = "block";
     document.querySelectorAll('#login_to').forEach((query) => {
         query.classList.remove("mt-5")
     })
@@ -34,7 +37,7 @@ password_input.onfocus = function() {
   }
 
 let numbers = /[0-9]/g;
-number = false
+
 
 console.log(button)
 
@@ -42,7 +45,7 @@ password_input.oninput = function(){
     let valid_flag = 0
     let input_data = password_input.value
     length = input_data.length
-    
+    number = false
     if (password_input.value.match(numbers)){
         number = true
     }
@@ -78,7 +81,6 @@ password_input.oninput = function(){
     }
 }
 
-
 password_confirm.oninput = function(){
     let input_data = password_input.value
     let confirm_data = password_confirm.value
@@ -95,4 +97,21 @@ password_confirm.oninput = function(){
         password_confirm.classList.add("is-invalid")
     }
 }
-  
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    fetch('/register', {
+        method: 'POST',
+        body: JSON.stringify({email: Email.value, password: password_input.value}),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(res =>{
+        return res.json()
+    })
+    .then(data =>{
+        location.replace('/mainpage')
+    })
+})

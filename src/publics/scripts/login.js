@@ -3,6 +3,11 @@ let Password = document.getElementById('password')
 
 let message = document.getElementById('message')
 
+addForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+})
+
 fetch ('/login', {
     method: 'POST',
     body: JSON.stringify({email: Email.value, password: Password.value}),

@@ -156,14 +156,18 @@ controller.confirmEmail = async (req, res) => {
 
 controller.confirmOTP = async (req, res) =>{
     const {email, otp } = req.query
-    const response = await fetch(`https://api.airtable.com/v0/appLJelkbGDaNk8Me/OTP?maxRecords=1&view=Active%20OTP&filter=${encodeURIComponent(`AND(Mail='${email}', OTP='${otp}')`)}`, {
+    const response = await fetch(`https://api.airtable.com/v0/appLJelkbGDaNk8Me/OTP?maxRecords=1&view=Active%20OTP&filterByFormula=${encodeURIComponent(`AND(Mail="${email}", OTP="${otp}")`)}`,
+    
+    {
         method: "GET",
         headers: {
             "Authorization": "Bearer patOUXhqU5qIghdet.8bdd0b668ff022459ce49b3ca499b6c09fe2eedbd2fe44d67c17783699fe16a3"
         }
     })
     const otps = await response.json();
-    //console.log(otps)
+    //console.log('response ne ', response)
+    //console.log('otp ', otps)
+    //console.log(otps.records.length)
     if (otps.records.length) {
         res.json({flag: true})
     }else {

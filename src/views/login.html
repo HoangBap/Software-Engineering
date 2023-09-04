@@ -34,9 +34,9 @@
                 <div class="row mx-4">
                     <input type="email" id="email" class="form-control mt-3 mb-1" placeholder="Input your email" name="email" value="<%= locals.email || null %>" required autofocus>
                     <input type="password" id="password" class="form-control mt-3 mb-3" placeholder="Input your password" name="user_password" required autofocus>
-                    <div id="messege" style="display: none; font-size:14px">
+                    <div id="message" style=" display:none; font-size:14px">
                         <div class="text-danger">
-                            Email is not existed or password is not correct from email !
+                            Invalid email or password
                         </div>
                     </div>
                 </div>
@@ -68,5 +68,6 @@
         </div>
         
     </div>
+    <script src="script/login.js"></script>
 </body>
 </html>

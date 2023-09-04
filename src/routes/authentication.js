@@ -26,6 +26,10 @@ router
     .route('/confirm-otp')
     .get(controller.confirmOTP)
 
+router
+    .route('/confirm-email')
+    .get(controller.confirmEmail)
+
 
 // router
 //     .route('/logout')

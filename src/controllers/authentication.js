@@ -133,14 +133,41 @@ controller.forgotPassView = (req, res) =>{
     console.log("Nothing here to see, forgot password function will be out soon")
 }
 
+controller.confirmEmail = async (req, res) => {
+    const {email} = req.query
+    // console.log(req.query)
+    const cur_user = await getUser(email) //return value la mot file json
+    //console.log(email)
+        //The email is already existed in the database!
+    if (cur_user) {
+        await fetch(`https://hooks.airtable.com/workflows/v1/genericWebhook/appLJelkbGDaNk8Me/wfloBgRlxfkMH5tBU/wtrDxFneJOx8sQ7p4`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({'mail': email})
+        })
+        console.log(`OTP sent successfully to ${email}!`)
+        res.json({ flag: 1})
+    }
+    else{
+        res.json({flag : 2})
+    }
+}
+
+
 controller.confirmOTP = async (req, res) =>{
-    const {email, otp } = req.params
-    const response = await fetch(`https://api.airtable.com/v0/appLJelkbGDaNk8Me/OTP?maxRecords=1&view=Active%20OTP&filter=AND(Mail='${email}', OTP='${otp}')`)
+    const {email, otp } = req.query
+    const response = await fetch(`https://api.airtable.com/v0/appLJelkbGDaNk8Me/OTP?maxRecords=1&view=Active%20OTP&filter=${encodeURIComponent(`AND(Mail='${email}', OTP='${otp}')`)}`, {
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer patOUXhqU5qIghdet.8bdd0b668ff022459ce49b3ca499b6c09fe2eedbd2fe44d67c17783699fe16a3"
+        }
+    })
     const otps = await response.json();
-    if (otps.length) {
+    //console.log(otps)
+    if (otps.records.length) {
         res.json({message: "OTP OK"})
     }else {
-        res.json({message: "OTP Not OK ditme"})
+        res.json({message: "OTP Not OK"})
     }
 }
 

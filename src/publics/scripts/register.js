@@ -18,12 +18,18 @@ let number_input = document.getElementById("number")
 
 password_input.onblur = function() {
     messege.style.display = "none";
-    document.getElementById("login_to").classList.add("mt-5")
+    // console.log(document.querySelectorAll('#login_to'))
+
+    document.querySelectorAll('#login_to').forEach((query) => {
+        query.classList.add("mt-5")
+    })
 }
 
 password_input.onfocus = function() {
     messege.style.display = "block";
-    document.getElementById("login_to").classList.remove("mt-5")
+    document.querySelectorAll('#login_to').forEach((query) => {
+        query.classList.remove("mt-5")
+    })
     // document.getElementById("login_to").classList.add("mt-1")
   }
 

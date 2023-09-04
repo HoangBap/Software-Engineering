@@ -1,4 +1,4 @@
-import {getUser, getUserByID, createUser} from '../models/user.js'
+import {getUser, createUser} from '../models/user.js'
 import {createUserProfile} from '../models/userProfile.js'
 import bcrypt from 'bcrypt'
 
@@ -6,7 +6,7 @@ const controller = {}
 
 // Check if the email and password match the data in the database
 controller.login = async (req, res) => {
-    const { email, user_password } = req.body;
+    const { email, password } = req.body;
     console.log(`User ${email} is trying to log in!`)
 
     // // Checking if there are any empty fields
@@ -19,24 +19,23 @@ controller.login = async (req, res) => {
     const cur_user = await getUser(email); //Get the user with the email from the database 
     if (!cur_user) { //User is not in the database yet!
         console.log(`User ${email} not found in the database`);
-        res.render("login", {flag: false, email: req.body.email});
+        res.json({flag: false});
         return 
     }
 
     //Checking if the password match with the user's password in the database
-    const isMatch = await bcrypt.compare(user_password, cur_user.user_password)
+    const isMatch = await bcrypt.compare(password, cur_user.user_password)
     if (isMatch) { // Successfully
         console.log(`Welcome back, ${email}!`)
 
         res.cookie(`userID`, cur_user.ID, {signed: true})
         res.cookie(`email`, cur_user.email)
 
-        res.redirect("mainpage")
-        return
+        res.json({flag: true})
         
     } else { //Failed
         console.log('Incorrect password');
-        res.render("login", {flag: false, email: req.body.email });
+        res.json({flag: false});
     }
 }
 

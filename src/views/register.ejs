@@ -1,6 +1,5 @@
 <%- include('layout.ejs'); %>
     <link rel="stylesheet" href="styles/register.css">
-    <!-- <link rel="stylesheet" href="../publics/styles/register.css"> -->
 </head>
 <body class="bg-image">
     <div>
@@ -15,7 +14,7 @@
             </div>
         </div> -->
         <div id="register">
-            <form id="form-register">
+            <form id="check-register">
                 <div class="row px-4">
                     <div style= "font-size:22px" class="text mt-4 mb-4">
                         <b>Sign up to your Account</b>
@@ -24,9 +23,9 @@
                 
                 <!-- <label class="sr-only">Input your email</label> -->
                 <div class="row mx-4">
-                    <input type="email" id="emailAddress" class="form-control mt-3 mb-2 is-invalid" placeholder="Input your email" name="email" required autofocus>
-                    <input type="password" id="password_1" class="form-control mt-3 mb-2 is-invalid" placeholder="Input your password" name="user_password" required autofocus>
-                    <div id="messege" style="display: none; font-size:14px">
+                    <input type="email" id="email" class="form-control mt-3 mb-2" placeholder="Input your email" name="email" required autofocus>
+                    <input type="password" id="password_1" class="form-control mt-3 mb-2" placeholder="Input your password" name="user_password" required autofocus>
+                    <div id="message" style="display: none; font-size:14px">
                         <p style="margin-bottom: 0px;"><b>Password must contain the following:</b></p>
                         <div  style="margin-bottom: 0px;">
                             <div id="number" class="invalid text-danger">Having <b>number</b></div>
@@ -36,8 +35,12 @@
                         </div>
                         
                     </div>
-                    <input type="password" id="password_2" class="form-control mt-3 mb-3 is-invalid" placeholder="Re-input your password" name="confirm" required autofocus>
-                    
+                    <input type="password" id="password_2" class="form-control mt-3 mb-1" placeholder="Re-input your password" name="confirm" required autofocus>
+                    <div id="message_email" style=" display:block; font-size:14px">
+                        <div class="text-danger">
+                            Invalid email or password
+                        </div>
+                    </div>
                 </div>
                 <!-- <div class="row">
                     <p>
@@ -47,10 +50,10 @@
                 <div class="text-center row mx-4">
                     <button class="button btn btn-dark btn-block " type="submit" disabled> CONTINUE</button>
                 </div>
-                <div class="row mt-5" id="login_to"></div>
-                <div class="row mt-5" id="login_to"></div>
+                <div class="row mt-5"></div>
+                <div class="row mt-3" id="login_to"></div>
                 <!-- <div class="row mt-5"></div> -->
-                <div class="text-center mt-5 row" id="login_to">
+                <div class="text-center mt-3 row" id="login_to">
                     <p>
                         Having account? <a class="link-opacity-100 link-dark" href ="./login">SIGN IN HERE</a>
                     </p>
@@ -60,7 +63,7 @@
         </div>
         
     </div>
-    <script type="text/javascript" src="./register.js"></script>
-    <script type="text/javascript" src="../publics/scripts/register.js"></script>
+    <!-- <script type="text/javascript" src="./register.js"></script> -->
+    <script type="text/javascript" src="scripts/register.js"></script>
 </body>
 </html>

@@ -19,7 +19,7 @@ controller.login = async (req, res) => {
     const cur_user = await getUser(email); //Get the user with the email from the database 
     if (!cur_user) { //User is not in the database yet!
         console.log(`User ${email} not found in the database`);
-        res.render("login", { email: req.body.email, user_password: req.body.user_password || null });
+        res.render("login", {flag: false, email: req.body.email});
         return 
     }
 
@@ -36,7 +36,7 @@ controller.login = async (req, res) => {
         
     } else { //Failed
         console.log('Incorrect password');
-        res.render("login", { email: req.body.email });
+        res.render("login", {flag: false, email: req.body.email });
     }
 }
 
@@ -61,7 +61,7 @@ controller.register = async (req, res, next) => {
         //The email is already existed in the database!
         if (cur_user) {
             console.log("The email is already existed in the database!")
-            res.redirect("register")
+            res.redirect("register", {flag: false}) 
             return 
 
         } else {

@@ -154,6 +154,8 @@ password_confirm.addEventListener('input', function(){
 })
 
 
+
+
 // password_confirm.oninput = function(){
 //     let input_data = password_input.value
 //     let confirm_data = password_confirm.value
@@ -171,26 +173,36 @@ password_confirm.addEventListener('input', function(){
 //     }
 // }
 
-// form.addEventListener('submit', function(e) {
-//     e.preventDefault();
+const getQueryParams = ( params, url ) => {
+    let href = url;
+    // this is an expression to get query strings
+    let regexp = new RegExp( '[?&]' + params + '=([^&#]*)', 'i' );
+    let qString = regexp.exec(href);
+    return qString ? qString[1] : null;
+  };
 
-//     fetch('/check-register', {
-//         method: 'POST',
-//         body: JSON.stringify({email: Email.value, password: password_input.value}),
-//         headers: {
-//             "Content-type": "application/json; charset=UTF-8"
-//         }
-//     })
-//     .then(res =>{
-//         return res.json()
-//     })
-//     .then(data =>{
-//         if (data.flag == false){
-//             message_email.style.display = "block"
-//         }
-//         else{
-//             message_email.style.display = "none"
-//             location.replace('/mainpage')
-//         }
-//     })
-// })
+let email = getQueryParams('email', window.location.href)
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    fetch('/new-pass', {
+        method: 'POST',
+        body: JSON.stringify({email: email, password: password_input.value}),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(res =>{
+        return res.json()
+    })
+    .then(data =>{
+        if (data.flag == false){
+            message_email.style.display = "block"
+        }
+        else{
+            message_email.style.display = "none"
+            location.replace('/login')
+        }
+    })
+})

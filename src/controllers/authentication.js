@@ -83,11 +83,11 @@ controller.logout = (req, res) => {
 }
 
 controller.forgotPassView = (req, res) =>{
-    console.log("Nothing here to see, forgot password function will be out soon")
+    res.render('forgot_password')
 }
 
 controller.confirmEmail = async (req, res) => {
-    const {email} = req.query
+    const {email} = req.body
     // console.log(req.query)
     const cur_user = await getUser(email) //return value la mot file json
     //console.log(email)
@@ -106,11 +106,13 @@ controller.confirmEmail = async (req, res) => {
     }
 }
 
+controller.viewPageOTP = async (req, res) => {
+    res.render("OTP_confirm")
+}
 
 controller.confirmOTP = async (req, res) =>{
-    const {email, otp } = req.query
-    const response = await fetch(`https://api.airtable.com/v0/appLJelkbGDaNk8Me/OTP?maxRecords=1&view=Active%20OTP&filterByFormula=${encodeURIComponent(`AND(Mail="${email}", OTP="${otp}")`)}`,
-    
+    const {email, OTP} = req.body
+    const response = await fetch(`https://api.airtable.com/v0/appLJelkbGDaNk8Me/OTP?maxRecords=1&view=Active%20OTP&filterByFormula=${encodeURIComponent(`AND(Mail="${email}", OTP="${OTP}")`)}`,
     {
         method: "GET",
         headers: {
@@ -128,14 +130,18 @@ controller.confirmOTP = async (req, res) =>{
     }
 }
 
+controller.viewRepassPage = async(req, res) => {
+    res.render('re_pass_page')
+}
+
 controller.repassword = async(req, res) =>{
-    const { new_password } = req.body
-    const { email } = req.query
+    const {email, new_password } = req.body
     const hashed_new_pass = await bcrypt.hash(new_password, 10)
     const mess = await updatePassword(email, hashed_new_pass)
     if (mess){
         res.json({flag: true})
     }
+    
     else{
         res.json({flag: false})
     }

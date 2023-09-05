@@ -41,10 +41,10 @@ app.use(express.urlencoded({extended: true}))
 
 //Setting up routes
 app.use(userRouter)
-app.use(homepageRouter)
 app.use(profileRouter)
 app.use(healthRecRouter)
 app.use(recipeRouter)
+app.use('/', homepageRouter)
 
 app.use('*', (req, res) => {
     res.status(404).render('404')

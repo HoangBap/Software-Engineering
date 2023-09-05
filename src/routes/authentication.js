@@ -13,5 +13,27 @@ router.post('/check-register', controller.register)
 
 router.get('/logout', controller.logout)
 
-export default router;
+router
+    .route('/forgot-password')
+    .get(controller.forgotPassView)
 
+router
+    .route('/confirm-otp')
+    .get(controller.confirmOTP)
+
+router
+    .route('/confirm-email')
+    .get(controller.confirmEmail)
+
+router
+    .route('/reset-password')
+    .post(controller.repassword)
+
+
+
+// router
+//     .route('/logout')
+//     .get(controller.logout)
+//     .post(controller.logout)
+
+export default router;

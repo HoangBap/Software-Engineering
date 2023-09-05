@@ -1,4 +1,4 @@
-import {getUser, createUser} from '../models/user.js'
+import {getUser, getUserByID, createUser, updatePassword} from '../models/user.js'
 import {createUserProfile} from '../models/userProfile.js'
 import bcrypt from 'bcrypt'
 
@@ -81,5 +81,65 @@ controller.logout = (req, res) => {
 
     res.redirect('login')
 }
+
+controller.forgotPassView = (req, res) =>{
+    console.log("Nothing here to see, forgot password function will be out soon")
+}
+
+controller.confirmEmail = async (req, res) => {
+    const {email} = req.query
+    // console.log(req.query)
+    const cur_user = await getUser(email) //return value la mot file json
+    //console.log(email)
+        //The email is already existed in the database!
+    if (cur_user) {
+        await fetch(`https://hooks.airtable.com/workflows/v1/genericWebhook/appLJelkbGDaNk8Me/wfloBgRlxfkMH5tBU/wtrDxFneJOx8sQ7p4`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({'mail': email})
+        })
+        console.log(`OTP sent successfully to ${email}!`)
+        res.json({ flag: true})
+    }
+    else{
+        res.json({flag: false})
+    }
+}
+
+
+controller.confirmOTP = async (req, res) =>{
+    const {email, otp } = req.query
+    const response = await fetch(`https://api.airtable.com/v0/appLJelkbGDaNk8Me/OTP?maxRecords=1&view=Active%20OTP&filterByFormula=${encodeURIComponent(`AND(Mail="${email}", OTP="${otp}")`)}`,
+    
+    {
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer patOUXhqU5qIghdet.8bdd0b668ff022459ce49b3ca499b6c09fe2eedbd2fe44d67c17783699fe16a3"
+        }
+    })
+    const otps = await response.json();
+    //console.log('response ne ', response)
+    //console.log('otp ', otps)
+    //console.log(otps.records.length)
+    if (otps.records.length) {
+        res.json({flag: true})
+    }else {
+        res.json({flag: false})
+    }
+}
+
+controller.repassword = async(req, res) =>{
+    const { new_password } = req.body
+    const { email } = req.query
+    const hashed_new_pass = await bcrypt.hash(new_password, 10)
+    const mess = await updatePassword(email, hashed_new_pass)
+    if (mess){
+        res.json({flag: true})
+    }
+    else{
+        res.json({flag: false})
+    }
+}
+
 
 export default controller

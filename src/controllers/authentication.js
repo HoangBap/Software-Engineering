@@ -40,43 +40,29 @@ controller.login = async (req, res) => {
 }
 
 controller.register = async (req, res, next) => {
-    const {email, user_password, confirm} = req.body
+    const {email, password} = req.body
     console.log(`User ${email} is trying to register`)
-    // //Checking if there are any empty fields
-    // if ( !email || !user_password || !confirm) {
-    //     console.log('User must fill all the empty fields!')
-    //     res.render("register.ejs", {email: req.body.email, user_password: req.body.user_password, confirm: req.body.confirm || null})
-    //     return 
-    // } 
 
-    //Password and confirm must match
-    if (user_password != confirm) { //If not match, user must re-enter the password
-        console.log('Password must match')
-        res.render("register", {email: req.body.email, user_password: req.body.user_password, confirm: req.body.confirm || null})
+    const cur_user = await getUser(email) //return value la mot file json
+    //The email is already existed in the database!
+    if (cur_user) {
+        console.log("The email is already existed in the database!")
+        res.json({flag: false}) 
         return 
 
     } else {
-        const cur_user = await getUser(email) //return value la mot file json
-        //The email is already existed in the database!
-        if (cur_user) {
-            console.log("The email is already existed in the database!")
-            res.redirect("register", {flag: false}) 
-            return 
+        console.log(`Welcome new user ${email} to the website!`)
 
-        } else {
-            console.log(`Welcome new user ${email} to the website!`)
+        const hashed_pass = await bcrypt.hash(password, 10)
+        const userID = await createUser(email, hashed_pass) //Add the user to the database
 
-            const hashed_pass = await bcrypt.hash(user_password, 10)
-            const userID = await createUser(email, hashed_pass) //Add the user to the database
- 
-            await createUserProfile(userID) //creating the initial profile for the user
+        await createUserProfile(userID) //creating the initial profile for the user
 
-            //Sending cookie back to the client
-            res.cookie(`userID`, userID, {signed: true})
-            res.cookie(`email`, email)
+        //Sending cookie back to the client
+        res.cookie(`userID`, userID, {signed: true})
+        res.cookie(`email`, email)
 
-            res.redirect("/mainpage")
-        }
+        res.json({flag: true})
     }
     return 
 }

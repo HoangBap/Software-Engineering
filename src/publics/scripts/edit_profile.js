@@ -3,6 +3,7 @@ let button = document.querySelector('.button')
 
 let currentDay = new Date()
 // let num_year = 
+
 date.oninput = function() {
     let input_year = parseInt(date.value.substr(0, 4))
     let current_year = currentDay.getFullYear()

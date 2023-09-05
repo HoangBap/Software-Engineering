@@ -96,7 +96,7 @@
                             <p>Date of birth: </p>
                         </div>
                         <div class="row pe-5 ps-2">
-                            <input type="date" id="Date_of_birth" class="form-control is-invalid" name="Date_of_birth" value="<%= locals.date_of_birth %>" required autofocus>
+                            <input type="date" id="Date_of_birth" class="form-control is-invalid" name="Date_of_birth" value="<%= locals.date_of_birth || null %>" required autofocus>
                         </div>
                     </div>
                     <div class="col">

@@ -1,4 +1,4 @@
-import {getUser, getUserByID, createUser} from '../models/user.js'
+import {getUser, getUserByID, createUser, updatePassword} from '../models/user.js'
 import {createUserProfile} from '../models/userProfile.js'
 import bcrypt from 'bcrypt'
 
@@ -174,5 +174,19 @@ controller.confirmOTP = async (req, res) =>{
         res.json({flag: false})
     }
 }
+
+controller.repassword = async(req, res) =>{
+    const { new_password } = req.body
+    const { email } = req.query
+    const hashed_new_pass = await bcrypt.hash(new_password, 10)
+    const mess = await updatePassword(email, hashed_new_pass)
+    if (mess){
+        res.json({flag: true})
+    }
+    else{
+        res.json({flag: false})
+    }
+}
+
 
 export default controller

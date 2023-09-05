@@ -30,6 +30,11 @@ router
     .route('/confirm-email')
     .get(controller.confirmEmail)
 
+router
+    .route('/reset-password')
+    .post(controller.repassword)
+
+
 
 // router
 //     .route('/logout')

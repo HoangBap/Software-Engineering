@@ -43,3 +43,19 @@ export async function createUser(email, user_password) {
 
     return result.insertId
 }
+
+// doi mat khau
+export async function updatePassword(email, user_password) {
+    const [result] = await pool.query(`
+        UPDATE User
+        SET user_password = ?
+        WHERE email = ?`
+        , [user_password, email]);
+
+    // Kiểm tra xem có bản ghi nào được cập nhật không
+    if (result.affectedRows > 0) {
+        return true; // Trả về true nếu có bản ghi được cập nhật
+    } else {
+        return false; // Trả về false nếu không có bản ghi nào được cập nhật (email không tồn tại)
+    }
+}

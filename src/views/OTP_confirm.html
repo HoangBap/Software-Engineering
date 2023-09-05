@@ -20,16 +20,21 @@
             <b>FitUS</b>
         </div>
 
-        <div id="login">
-            <form method="post" action="/OTP_confirm">
+        <div id="OTP">
+            <form id="OTP_confirm">
                 <div class="row px-4">
-                    <div style= "font-size:22px" class="text mt-4 mb-4">
+                    <div style= "font-size:22px" class="text mt-4">
                         <b>OTP was send to you</b>
                     </div>
                 </div>
                 
                 <div class="row mx-4">
                     <input id="OTP" class="form-control mt-3 mb-3" placeholder="Input your OTP" name="OTP" required autofocus>
+                    <div id="message" class="mb-2" style=" display:none; font-size:14px">
+                        <div class="text-danger mx-4">
+                            The OTP is not correct
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="text-center row mx-4">
@@ -51,5 +56,6 @@
         </div>
 
     </div>
+    <script src="scripts/OTP_confirm.js"></script>
 </body>
 </html>

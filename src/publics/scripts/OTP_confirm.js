@@ -1,15 +1,15 @@
 let message = document.getElementById("message")
 
-const form = document.getElementById("email_forgot")
+const form = document.getElementById("OTP_confirm")
 
-let Email = document.getElementById('email')
+let OTP = document.getElementById("OTP")
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    fetch('/check-forgot-email', {
+    fetch('/check-OTP', {
         method: 'GET',
-        body: JSON.stringify({email: Email.value}),
+        body: JSON.stringify({OTP: OTP.value}),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
@@ -23,8 +23,7 @@ form.addEventListener('submit', function(e) {
         }
         else{
             message.style.display = "none"
-            location.replace('/OTP_confirm')
-
+            location.replace('/re_pass')
         }
     })
 })

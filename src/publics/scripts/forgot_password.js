@@ -1,14 +1,12 @@
 let message = document.getElementById("message")
-
 const form = document.getElementById("email_forgot")
-
 let Email = document.getElementById('email')
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     fetch('/check-forgot-email', {
-        method: 'GET',
+        method: 'POST',
         body: JSON.stringify({email: Email.value}),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -23,8 +21,7 @@ form.addEventListener('submit', function(e) {
         }
         else{
             message.style.display = "none"
-            location.replace('./next' + "?email=" + email.value)
-            
+            location.replace('/OTP_confirm')
         }
     })
 })

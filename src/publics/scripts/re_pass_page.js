@@ -1,25 +1,12 @@
 let password_input = document.getElementById("password_1")
 let password_confirm = document.getElementById("password_2")
-// console.log(password_input)
-// console.log(password_confirm)
 let message = document.getElementById("message")
 let button = document.querySelector('.button')
 
 let length_input = document.getElementById("length")
 let number_input = document.getElementById("number")
-// let message_email = document.getElementById('message_email')
 
-const form = document.getElementById('check-register')
-
-// fetch('/register')
-// .then(res => {
-//     return res.json()
-// })
-// .then(data => {
-//     console.log('Data:', data)
-//     mes = data
-// })
-
+const form = document.getElementById('re_pass')
 
 password_input.onblur = function() {
     message.style.display = "none";
@@ -95,46 +82,6 @@ password_input.addEventListener('input',function(){
     //     // button.setAttribute("disabled", "")
     // }
 })
-// password_input.oninput = function(){
-//     let valid_flag = 0
-//     let input_data = password_input.value
-//     length = input_data.length
-//     number = false
-//     if (password_input.value.match(numbers)){
-//         number = true
-//     }
-//     if (length < 8){
-//         length_input.classList.remove("text-success")
-//         length_input.classList.add("text-danger")
-//     }
-//     else {
-//         length_input.classList.add("text-success")
-//         length_input.classList.remove("text-danger")
-//         valid_flag = valid_flag + 1
-//     }
-//     if (number == false){
-//         number_input.classList.remove("text-success")
-//         number_input.classList.add("text-danger")
-//     }
-//     else{
-//         number_input.classList.add("text-success")
-//         number_input.classList.remove("text-danger")
-//         valid_flag = valid_flag + 1
-//     }
-//     // console.log(password_input.value)
-//     // console.log(valid_flag)
-//     // if (valid_flag == 2){
-//     //     password_input.classList.remove("is-invalid")
-//     //     password_input.classList.add("is-valid")
-//     //     // button.removeAttribute("disabled")
-//     // }
-//     // else{
-//     //     password_input.classList.remove("is-valid")
-//     //     password_input.classList.add("is-invalid")
-//     //     // button.setAttribute("disabled", "")
-//     // }
-// }
-
 
 password_confirm.addEventListener('input', function(){
     let input_data = password_input.value
@@ -143,35 +90,11 @@ password_confirm.addEventListener('input', function(){
     console.log(confirm_data)
     if (input_data == confirm_data){
         button.removeAttribute("disabled")
-        // password_confirm.classList.remove("is-invalid")
-        // password_confirm.classList.add("is-valid")
     }
     else{
         button.setAttribute("disabled", "")
-        // password_confirm.classList.remove("is-valid")
-        // password_confirm.classList.add("is-invalid")
     }
 })
-
-
-
-
-// password_confirm.oninput = function(){
-//     let input_data = password_input.value
-//     let confirm_data = password_confirm.value
-//     console.log(input_data)
-//     console.log(confirm_data)
-//     if (input_data == confirm_data){
-//         button.removeAttribute("disabled")
-//         // password_confirm.classList.remove("is-invalid")
-//         // password_confirm.classList.add("is-valid")
-//     }
-//     else{
-//         button.setAttribute("disabled", "")
-//         // password_confirm.classList.remove("is-valid")
-//         // password_confirm.classList.add("is-invalid")
-//     }
-// }
 
 const getQueryParams = ( params, url ) => {
     let href = url;
@@ -188,7 +111,7 @@ form.addEventListener('submit', function(e) {
 
     fetch('/new-pass', {
         method: 'POST',
-        body: JSON.stringify({email: email, password: password_input.value}),
+        body: JSON.stringify({email: email, new_password: password_input.value}),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
@@ -198,10 +121,9 @@ form.addEventListener('submit', function(e) {
     })
     .then(data =>{
         if (data.flag == false){
-            message_email.style.display = "block"
+            location.replace('/forgot_pass')
         }
         else{
-            message_email.style.display = "none"
             location.replace('/login')
         }
     })

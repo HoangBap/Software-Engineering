@@ -4,9 +4,8 @@ import { checkValid } from '../middleware/checkValid.js'
 
 const router = express.Router()
 
-router
-    .route('/landing_page')
-    .get(controller.landingpageView)
+router.get('/', controller.landingpageView)
+router.get('/landing_page', controller.landingpageView)
     
 router
     .route('/mainpage')

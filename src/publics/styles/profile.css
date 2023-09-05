@@ -66,6 +66,7 @@ header{
 }
 
 #button{
+<<<<<<< HEAD
     margin-left: 750px;
 }
 
@@ -82,4 +83,7 @@ header{
     font-size: 1rem;
     color: #052B40;
     font-weight: 600;
+=======
+    margin-left: 680px;
+>>>>>>> 4180a84b2d69435c448b02efc6ecf45a6ff20bc1
 }

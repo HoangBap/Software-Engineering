@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-let Email = document.getElementById('email')
-=======
->>>>>>> 4180a84b2d69435c448b02efc6ecf45a6ff20bc1
 let password_input = document.getElementById("password_1")
 let password_confirm = document.getElementById("password_2")
 // console.log(password_input)
@@ -11,7 +7,7 @@ let button = document.querySelector('.button')
 
 let length_input = document.getElementById("length")
 let number_input = document.getElementById("number")
-let message_email = document.getElementById('message_email')
+// let message_email = document.getElementById('message_email')
 
 const form = document.getElementById('check-register')
 
@@ -46,7 +42,7 @@ let numbers = /[0-9]/g;
 
 
 // console.log(button)
-form.addEventListener('input',function(){
+password_input.addEventListener('input',function(){
     let valid_flag = 0
     let input_data = password_input.value
     length = input_data.length
@@ -99,8 +95,6 @@ form.addEventListener('input',function(){
     //     // button.setAttribute("disabled", "")
     // }
 })
-<<<<<<< HEAD
-=======
 // password_input.oninput = function(){
 //     let valid_flag = 0
 //     let input_data = password_input.value
@@ -141,7 +135,6 @@ form.addEventListener('input',function(){
 //     // }
 // }
 
->>>>>>> 4180a84b2d69435c448b02efc6ecf45a6ff20bc1
 
 password_confirm.addEventListener('input', function(){
     let input_data = password_input.value
@@ -160,8 +153,8 @@ password_confirm.addEventListener('input', function(){
     }
 })
 
-<<<<<<< HEAD
-=======
+
+
 
 // password_confirm.oninput = function(){
 //     let input_data = password_input.value
@@ -180,13 +173,22 @@ password_confirm.addEventListener('input', function(){
 //     }
 // }
 
->>>>>>> 4180a84b2d69435c448b02efc6ecf45a6ff20bc1
+const getQueryParams = ( params, url ) => {
+    let href = url;
+    // this is an expression to get query strings
+    let regexp = new RegExp( '[?&]' + params + '=([^&#]*)', 'i' );
+    let qString = regexp.exec(href);
+    return qString ? qString[1] : null;
+  };
+
+let email = getQueryParams('email', window.location.href)
+
 form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    fetch('/check-register', {
+    fetch('/new-pass', {
         method: 'POST',
-        body: JSON.stringify({email: Email.value, password: password_input.value}),
+        body: JSON.stringify({email: email, password: password_input.value}),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
@@ -200,7 +202,7 @@ form.addEventListener('submit', function(e) {
         }
         else{
             message_email.style.display = "none"
-            location.replace('/mainpage')
+            location.replace('/login')
         }
     })
 })

@@ -14,5 +14,6 @@
             "username": "sqluser",
             "password": "password"
         }
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }

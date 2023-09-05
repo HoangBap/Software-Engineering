@@ -176,8 +176,7 @@ controller.confirmOTP = async (req, res) =>{
 }
 
 controller.repassword = async(req, res) =>{
-    const { new_password } = req.body
-    const { email } = req.query
+    const { email, new_password } = req.body
     const hashed_new_pass = await bcrypt.hash(new_password, 10)
     const mess = await updatePassword(email, hashed_new_pass)
     if (mess){

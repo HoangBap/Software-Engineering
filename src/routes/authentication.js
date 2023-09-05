@@ -35,7 +35,6 @@ router
     .post(controller.repassword)
 
 
-
 // router
 //     .route('/logout')
 //     .get(controller.logout)

@@ -90,7 +90,7 @@
                             <p>Phone number: </p>
                         </div>
                         <div class="row pe-5 ps-2 was-validated">
-                            <input type="text" id="Phone number" class="form-control" name="Phone_number"  value="<%= locals.phone_number %>" required>
+                            <input type="tel" id="Phone number" class="form-control" name="Phone_number" pattern="[0-9]{10}"  value="<%= locals.phone_number %>" required>
                         </div>
                         <div class="row mt-3">
                             <p>Date of birth: </p>

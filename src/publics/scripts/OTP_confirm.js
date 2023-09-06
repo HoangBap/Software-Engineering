@@ -33,7 +33,7 @@ form.addEventListener('submit', function(e) {
         else{
             message.style.display = "none"
             fetch('new-pass')
-            location.replace('/re_pass_page')
+            location.replace('/re_pass_page' + `?email=` + email)
         }
     })
 })

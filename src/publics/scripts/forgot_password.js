@@ -21,7 +21,7 @@ form.addEventListener('submit', function(e) {
         }
         else{
             message.style.display = "none"
-            location.replace('/OTP_confirm')
+            location.replace('/OTP_confirm' + '?email=' + Email.value)
         }
     })
 })

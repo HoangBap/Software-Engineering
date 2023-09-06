@@ -86,6 +86,7 @@ controller.forgotPassView = (req, res) =>{
     res.render('forgot_password')
 }
 
+//Confirm if the email existed in the database
 controller.confirmEmail = async (req, res) => {
     const {email} = req.body
     // console.log(req.query)

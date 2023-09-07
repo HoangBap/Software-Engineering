@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #EEF6F9;
+}
+
+/*===== NAVBAR =====*/
+
+.navbar-wrap{
+    background-color: #4D77FF;
+}
+
+.navbar-brand{
+    font-size: 2rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    transition: all 0.4s;
+}
+
+.navbar-brand:hover{
+    color:#052B40;
+    transition: all 0.4s;
+}
+
+.nav-item-space{
+    margin: 0 10px;
+}
+
+.nav-link{
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    transition: all 0.4s;
+}
+
+.nav-link:hover{
+    color:#052B40;
+    transition: all 0.4s;
+}
+
+.log-in-btn{
+    margin-left: 50px;
+    padding: 5px 20px;
+    border: 0;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.circle-btn{
+    height: 50px;
+    width: 50px;
+    border: 0;
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: #FFFFFF;
+}
+
+.dropdown-item{
+    font-size: 1rem;
+    color: #052B40;
+    font-weight: 600;
+}
+
+.text-bg{
+    background-image: url("../images/foodportion.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main h1{
+    font-size: 70px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-shadow: 4px 4px 0px #052B40;
+    margin: 0;
+}
+
+.main h2{
+    font-size: 40px;
+    font-weight: 700;
+    color: #052B40;
+}
+
+.main h3{
+    font-size: 16px;
+    font-weight: 600;
+    color: #052B40;
+    margin: 0;
+}
+
+.main h5{
+    font-size: 16px;
+    font-weight: 400;
+    color: #5C6B73;
+    margin: 0;
+}
+
+.main p{
+    text-align: justify;
+    font-size: 16px;
+    font-weight: 400;
+    color: #052B40;
+    margin: 0;
+}
+
+.section-wrap{
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0px 0px 30px rgba(5, 43, 64, 0.1);
+}
+
+.selection-wrap::-webkit-scrollbar{
+    display: none;
+}
+
+.pill-btn{
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: transparent;
+    border-color: #4D77FF;
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #052B40;
+    transition: all 0.4s;
+}
+
+.selected{
+    border-color: transparent;
+    background-color: #4D77FF;
+    color: #FFFFFF;
+    transition: all 0.4s;
+}
+
+.recipe-wrap{
+    position: relative;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 30px rgba(5, 43, 64, 0.1);
+}
+
+.recipe-wrap:hover{
+    cursor: pointer;
+}
+
+.read-more{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.recipe-pic{
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    width: 200px;
+    border-radius: 10px;
+}
